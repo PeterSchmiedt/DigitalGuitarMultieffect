@@ -1,0 +1,447 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+ADJUST_PIXELS::10	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	132;"	d	line:132	file:
+AUDIO_IN	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	104;"	v	line:104
+AudioLoopback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	58;"	p	line:58	signature:(void)
+AudioLoopback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1014;"	f	line:1014	signature:(void)
+BUTTON_NEXT_IO::PORTDbits.RD12	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	58;"	d	line:58
+BUTTON_NEXT_TRIS::TRISDbits.TRISD12	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	57;"	d	line:57
+BUTTON_PREVIOUS_IO::PORTDbits.RD3	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	61;"	d	line:61
+BUTTON_PREVIOUS_TRIS::TRISDbits.TRISD3	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	60;"	d	line:60
+BUTTON_VOLUME_DOWN_IO::PORTDbits.RD2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	55;"	d	line:55
+BUTTON_VOLUME_DOWN_TRIS::TRISDbits.TRISD2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	54;"	d	line:54
+BUTTON_VOLUME_UP_IO::PORTDbits.RD1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	52;"	d	line:52
+BUTTON_VOLUME_UP_TRIS::TRISDbits.TRISD1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	51;"	d	line:51
+CheckButtons	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	55;"	p	line:55	signature:( GOL_MSG *message )
+CheckButtons	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1307;"	f	line:1307	signature:( GOL_MSG *message )
+CheckScreenDemoSelection	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	59;"	p	line:59	signature:(void)
+CheckScreenDemoSelection	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	745;"	f	line:745
+CreateScreenLoopback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	61;"	p	line:61	signature:(void)
+CreateScreenLoopback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	974;"	f	line:974	signature:(void)
+CreateSettingsScreen	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	69;"	p	line:69	signature:(void)
+CreateSettingsScreen	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1043;"	f	line:1043	signature:(void)
+DEBOUNCE_TIME::(100*(TICKS_PER_SECOND/1000ull	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1306;"	d	line:1306	file:
+DEMODELAY::1000	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	48;"	d	line:48
+DMA_PING_PONG	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	111;"	d	line:111
+DMA_PING_PONGR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	112;"	d	line:112
+DMA_PP_BUFFER_SIZE::(WM8960DRV_TX_BUFFER_SIZE_STER	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	113;"	d	line:113
+Digit	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1973;"	l	line:1973
+Divisor	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1973;"	l	line:1973
+DmaInterruptHandler	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1271;"	f	line:1271	signature:(void)
+DmaInterruptHandlerR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1310;"	f	line:1310	signature:(void)
+FRAME_SIZE::1024	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	65;"	d	line:65	file:
+Font25	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	11;"	v	line:11
+GFX_free::(pObj)free(pObj)	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	150;"	d	line:150
+GFX_malloc::(size)malloc(size)	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	149;"	d	line:149
+GOLDrawCallback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	63;"	p	line:63	signature:( void )
+GOLDrawCallback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	215;"	f	line:215	signature:( void )
+GOLMediumFont	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	232;"	v	line:232
+GOLMsgCallback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	64;"	p	line:64	signature:( UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg )
+GOLMsgCallback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	381;"	f	line:381	signature:( UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg )
+GOLSmallFont	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	158;"	v	line:158
+GRAPHIC_IDS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	122;"	t	line:122	file:
+GRAPHIC_TABS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	130;"	t	line:130	file:
+GetPeripheralClock::80000000	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	46;"	d	line:46
+GetSystemClock	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	508;"	p	line:508	file:
+ICONS_ADB_H	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	2;"	d	line:2
+ID_LOOPBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	110;"	e	line:110	file:
+ID_PLAYBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	109;"	e	line:109	file:
+ID_RADIOBUTTON1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	115;"	e	line:115	file:
+ID_RADIOBUTTON2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	116;"	e	line:116	file:
+ID_RADIOBUTTON3	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	117;"	e	line:117	file:
+ID_RADIOBUTTON4	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	118;"	e	line:118	file:
+ID_RADIOBUTTON5	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	119;"	e	line:119	file:
+ID_RADIOBUTTON6	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	120;"	e	line:120	file:
+ID_RADIOBUTTON7	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	121;"	e	line:121	file:
+ID_RECORD	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	108;"	e	line:108	file:
+ID_SETTINGS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	111;"	e	line:111	file:
+ID_SLIDER1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	113;"	e	line:113	file:
+ID_SLIDER2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	114;"	e	line:114	file:
+ID_STATICTEXT1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	112;"	e	line:112	file:
+ID_WINDOW	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	107;"	e	line:107	file:
+InitializeHardware	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	54;"	p	line:54	signature:( void )
+InitializeHardware	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	504;"	f	line:504	signature:( void )
+L10679	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1537;"	v	line:1537
+L12184	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1659;"	v	line:1659
+L12635	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	67;"	v	line:67
+L14844	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	975;"	v	line:975
+L17267	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	159;"	v	line:159
+L17584	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	2825;"	v	line:2825
+L1929	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	128;"	v	line:128
+L19696	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1447;"	v	line:1447
+L20704	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1781;"	v	line:1781
+L21553	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	12;"	v	line:12
+L22490	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1598;"	v	line:1598
+L2312	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	6;"	v	line:6
+L23640	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1036;"	v	line:1036
+L25701	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	2129;"	v	line:2129
+L29220	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	2477;"	v	line:2477
+L32279	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1097;"	v	line:1097
+L3991	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1720;"	v	line:1720
+L4795	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1492;"	v	line:1492
+L4926	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	3173;"	v	line:3173
+L519	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1386;"	v	line:1386
+L7005	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1203;"	v	line:1203
+L7316	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1142;"	v	line:1142
+L8180	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1264;"	v	line:1264
+L8272	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1325;"	v	line:1325
+L8667	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	233;"	v	line:233
+LINEIN	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	102;"	e	line:102
+MICROPHONE	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	103;"	e	line:103
+MIN::(x,y)((x>y)?y:x)	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	47;"	d	line:47
+O_MODE	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	252;"	t	line:252
+O_RDONLY	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	248;"	e	line:248
+O_RDWR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	250;"	e	line:250
+O_WRONLY	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	249;"	e	line:249
+PerformFFT	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	67;"	p	line:67	signature:(void)
+PerformFFT	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1939;"	f	line:1939
+Printed	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1973;"	l	line:1973
+ProcessMessageDemoSelection	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	66;"	p	line:66	signature:( UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg )
+ProcessMessageDemoSelection	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1246;"	f	line:1246	signature:( UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg )
+REAL_LOGN::8	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	74;"	d	line:74	file:
+REAL_N::256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	73;"	d	line:73	file:
+ResetCodec	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	68;"	p	line:68	signature:(unsigned int sample_rate, int audio_in)
+ResetCodec	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1897;"	f	line:1897	signature:(unsigned int sampleRate, int audioIn)
+SAMPLE_RATE_16000_HZ	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	260;"	e	line:260
+SAMPLE_RATE_32000_HZ	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	258;"	e	line:258
+SAMPLE_RATE_44100_HZ	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	257;"	e	line:257
+SAMPLE_RATE_48000_HZ	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	256;"	e	line:256
+SAMPLE_RATE_8000_HZ	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	261;"	e	line:261
+SAMPLE_RATE_NO_CHANGE	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	262;"	e	line:262
+STATES_GRAPHICS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	103;"	t	line:103	file:
+STATE_DEMO_SELECTION	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	86;"	e	line:86	file:
+STATE_DISPLAY_DEMO_SELECTION	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	85;"	e	line:85	file:
+STATE_DISPLAY_INSERT_USB_RECORD	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	88;"	e	line:88	file:
+STATE_DISPLAY_SHOW_LOOPBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	97;"	e	line:97	file:
+STATE_DISPLAY_SHOW_PLAYBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	93;"	e	line:93	file:
+STATE_DISPLAY_SHOW_PLAYBACK_CLEAR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	92;"	e	line:92	file:
+STATE_DISPLAY_SHOW_RECORD	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	87;"	e	line:87	file:
+STATE_DISPLAY_SHOW_SETTINGS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	100;"	e	line:100	file:
+STATE_INSERT_USB_PLAYBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	94;"	e	line:94	file:
+STATE_INSERT_USB_RECORD	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	89;"	e	line:89	file:
+STATE_SHOW_CLEAR_LOOPBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	98;"	e	line:98	file:
+STATE_SHOW_CLEAR_PLAYBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	95;"	e	line:95	file:
+STATE_SHOW_CLEAR_RECORD	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	90;"	e	line:90	file:
+STATE_SHOW_CLEAR_SETTINGS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	101;"	e	line:101	file:
+STATE_SHOW_LOOPBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	99;"	e	line:99	file:
+STATE_SHOW_PLAYBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	96;"	e	line:96	file:
+STATE_SHOW_RECORD	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	91;"	e	line:91	file:
+STATE_SHOW_SETTINGS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	102;"	e	line:102	file:
+STEREO_AUDIO_DATA	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	99;"	t	line:99
+ShowInsertUSBPlayback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	62;"	p	line:62	signature:(void)
+ShowInsertUSBPlayback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	880;"	f	line:880	signature:(void)
+ShowInsertUSBRecord	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	60;"	p	line:60	signature:(void)
+ShowInsertUSBRecord	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	779;"	f	line:779	signature:(void)
+ShowScreenDemoSelection	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	65;"	p	line:65	signature:( void )
+ShowScreenDemoSelection	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	603;"	f	line:603	signature:( void )
+ShowScreenPlayback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	57;"	p	line:57	signature:(void)
+ShowScreenPlayback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	915;"	f	line:915	signature:(void)
+ShowScreenRecord	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	56;"	p	line:56	signature:(void)
+ShowScreenRecord	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	814;"	f	line:814	signature:(void)
+Sin	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	67;"	v	line:67
+Sout	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	68;"	v	line:68
+TAB_LOOPBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	128;"	e	line:128	file:
+TAB_PLAYBACK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	127;"	e	line:127	file:
+TAB_RECORD	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	126;"	e	line:126	file:
+TAB_SETTINGS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	129;"	e	line:129	file:
+TICK	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	59;"	t	line:59
+TICKS_PER_SECOND::((GetPeripheralClock+128ull)/2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	74;"	d	line:74
+TICK_HOUR::((QWORD)TICKS_PER_SECOND*3600u	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	82;"	d	line:82
+TICK_MINUTE::((QWORD)TICKS_PER_SECOND)*60ul	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	80;"	d	line:80
+TICK_SECOND::((QWORD)TICKS_PER_SECOND)	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	78;"	d	line:78
+TickConvertToMilliseconds	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	91;"	p	line:91	signature:(DWORD dwTickValue)
+TickGet	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	88;"	p	line:88	signature:(void)
+TickGetDiff::(a,b)((a)-(b))	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	85;"	d	line:85
+TickGetDiv256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	89;"	p	line:89	signature:(void)
+TickGetDiv64K	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	90;"	p	line:90	signature:(void)
+TickInit	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	87;"	p	line:87	signature:(void)
+TickUpdate	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	92;"	p	line:92	signature:(void)
+USB_ApplicationEventHandler	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	433;"	f	line:433	signature:( BYTE address, USB_EVENT event, void *data, DWORD size )
+USE_BITMAP_FLASH::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	140;"	d	line:140
+USE_BUTTON::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	93;"	d	line:93
+USE_FOCUS	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	72;"	d	line:72
+USE_FONT_FLASH::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	126;"	d	line:126
+USE_GOL::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	92;"	d	line:92
+USE_KEYBOARD::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	84;"	d	line:84
+USE_NONBLOCKING_CONFIG::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	53;"	d	line:53
+USE_RADIOBUTTON::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	96;"	d	line:96
+USE_SLIDER::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	99;"	d	line:99
+USE_STATICTEXT::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	101;"	d	line:101
+USE_WINDOW::	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	94;"	d	line:94
+WAIT_UNTIL_FINISH::(x)while(!x)	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\HardwareProfile.h	46;"	d	line:46
+WM8731Codec_read	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	270;"	p	line:270	signature:(WM8960_CODEC * codecHandle,STEREO_AUDIO_DATA * data, UINT nStereoSamples)
+WM8731Codec_write	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	272;"	p	line:272	signature:(WM8960_CODEC * codecHandle,STEREO_AUDIO_DATA * data, UINT nStereoSamples)
+WM8960CodecClear	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	281;"	p	line:281	signature:(WM8960_CODEC * codecHandle)
+WM8960CodecClear	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	502;"	f	line:502	signature:(WM8960_CODEC * codecHandle)
+WM8960CodecClose	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	275;"	p	line:275	signature:(WM8960_CODEC * pCodecHandle)
+WM8960CodecClose	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	123;"	f	line:123	signature:(WM8960_CODEC * pCodecHandle)
+WM8960CodecConfigDACMute	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	282;"	p	line:282	signature:(WM8960_CODEC * pCodecHandle, BOOL enable)
+WM8960CodecConfigDACMute	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	948;"	f	line:948	signature:(WM8960_CODEC * pCodecHandle, BOOL enable)
+WM8960CodecConfigSampleRate	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	276;"	p	line:276	signature:(WM8960_CODEC * pCodecHandle, WM8960_SAMPLE_RATE sampleRate)
+WM8960CodecConfigSampleRate	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	957;"	f	line:957	signature:(WM8960_CODEC * pCodecHandle, WM8960_SAMPLE_RATE sampleRate)
+WM8960CodecConfigVolume	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	277;"	p	line:277	signature:(WM8960_CODEC * pCodecHandle, UINT8 volumePerA, UINT8 volumePerD)
+WM8960CodecConfigVolume	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	874;"	f	line:874	signature:(WM8960_CODEC * pCodecHandle, UINT8 volumePerA, UINT8 volumePerD)
+WM8960CodecEnableLineIn	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	279;"	p	line:279	signature:(WM8960_CODEC * pCodecHandle,BOOL enable)
+WM8960CodecEnableLineIn	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	667;"	f	line:667	signature:(WM8960_CODEC * pCodecHandle,BOOL enable)
+WM8960CodecEnableMicrophone	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	278;"	p	line:278	signature:(WM8960_CODEC * pCodecHandle, BOOL enable)
+WM8960CodecEnableMicrophone	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	652;"	f	line:652	signature:(WM8960_CODEC * pCodecHandle, BOOL enable)
+WM8960CodecOpen	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	274;"	p	line:274	signature:(O_MODE codecOpenMode)
+WM8960CodecOpen	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	144;"	f	line:144	signature:(O_MODE codecOpenMode)
+WM8960CodecRead	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	269;"	p	line:269	signature:(WM8960_CODEC * codecHandle, STEREO_AUDIO_DATA * data, UINT nSamples)
+WM8960CodecRead	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1250;"	f	line:1250	signature:(WM8960_CODEC * codecHandle, STEREO_AUDIO_DATA * data, UINT nSamples)
+WM8960CodecSetRegCopyToDefault	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	63;"	f	line:63	signature:(void)
+WM8960CodecStartAudio	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	280;"	p	line:280	signature:(WM8960_CODEC * pCodecHandle, BOOL enable)
+WM8960CodecStartAudio	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	830;"	f	line:830	signature:(WM8960_CODEC * pCodecHandle, BOOL enable)
+WM8960CodecWrite	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	271;"	p	line:271	signature:(WM8960_CODEC * codecHandle, STEREO_AUDIO_DATA * data, UINT nSamples)
+WM8960CodecWrite	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1233;"	f	line:1233	signature:(WM8960_CODEC * codecHandle, STEREO_AUDIO_DATA * data, UINT nSamples)
+WM8960Codec_ioctl	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	268;"	p	line:268	signature:(WM8960_CODEC * pCodecHandle, WM8960_REGISTER commandRegister, void * data)
+WM8960Codec_ioctl	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	359;"	f	line:359	signature:(WM8960_CODEC * pCodecHandle, WM8960_REGISTER commandRegister, void * data)
+WM8960Codec_read	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	699;"	f	line:699	signature:(WM8960_CODEC * codecHandle, STEREO_AUDIO_DATA * data, UINT nStereoSamples)
+WM8960Codec_write	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	511;"	f	line:511	signature:(WM8960_CODEC * codecHandle, STEREO_AUDIO_DATA * data, UINT nStereoSamples)
+WM8960DRV_DYNAMIC_ALLOCATION	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	55;"	d	line:55
+WM8960DRV_I2C_BAUD::100000	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	147;"	d	line:147
+WM8960DRV_I2C_MODULE::I2C2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	146;"	d	line:146
+WM8960DRV_RX_BUFFER_SIZE_BYTES::(WM8960DRV_RX_BUFFER_SIZE_STER	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	79;"	d	line:79
+WM8960DRV_RX_BUFFER_SIZE_STEREO_WORD::2048	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	67;"	d	line:67
+WM8960DRV_SPI_MODULE::SPI_CHANNEL2A	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	155;"	d	line:155
+WM8960DRV_SPI_MODULE_BUFFER::SPI2ABUF	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	156;"	d	line:156
+WM8960DRV_SPI_MODULE_RX_IRQ::_SPI2A_RX_IRQ	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	158;"	d	line:158
+WM8960DRV_SPI_MODULE_TX_IRQ::_SPI2A_TX_IRQ	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	157;"	d	line:157
+WM8960DRV_SPI_RX_DMA_CHANNEL::DMA_CHANNEL1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	177;"	d	line:177
+WM8960DRV_SPI_RX_DMA_INTERRUPT::INT_DMA1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	179;"	d	line:179
+WM8960DRV_SPI_RX_DMA_INT_PRI_LEVEL::INT_PRIORITY_LEVEL_5	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	180;"	d	line:180
+WM8960DRV_SPI_RX_DMA_INT_SPRI_LEVEL::INT_SUB_PRIORITY_LEVEL_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	181;"	d	line:181
+WM8960DRV_SPI_RX_DMA_VECTOR::INT_DMA_1_VECTOR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	178;"	d	line:178
+WM8960DRV_SPI_TX_DMA_CHANNEL::DMA_CHANNEL0	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	166;"	d	line:166
+WM8960DRV_SPI_TX_DMA_INTERRUPT::INT_DMA0	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	168;"	d	line:168
+WM8960DRV_SPI_TX_DMA_INT_PRI_LEVEL::INT_PRIORITY_LEVEL_5	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	169;"	d	line:169
+WM8960DRV_SPI_TX_DMA_INT_SPRI_LEVEL::INT_SUB_PRIORITY_LEVEL_0	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	170;"	d	line:170
+WM8960DRV_SPI_TX_DMA_VECTOR::INT_DMA_0_VECTOR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	167;"	d	line:167
+WM8960DRV_TX_BUFFER_SIZE_BYTES::(WM8960DRV_TX_BUFFER_SIZE_STER	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	73;"	d	line:73
+WM8960DRV_TX_BUFFER_SIZE_STEREO_WORD::2048	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	61;"	d	line:61
+WM8960Registers	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	41;"	v	line:41
+WM8960_3D_CTRL	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	201;"	e	line:201
+WM8960_ADCL_SIGNAL_PATH	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	215;"	e	line:215
+WM8960_ADCR_SIGNAL_PATH	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	216;"	e	line:216
+WM8960_ADC_DAC_CTRL1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	193;"	e	line:193
+WM8960_ADC_DAC_CTRL2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	194;"	e	line:194
+WM8960_ADDITIONAL_CTRL_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	208;"	e	line:208
+WM8960_ADDITIONAL_CTRL_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	209;"	e	line:209
+WM8960_ADDITIONAL_CTRL_3	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	210;"	e	line:210
+WM8960_ADDITIONAL_CTRL_4	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	229;"	e	line:229
+WM8960_ALC_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	202;"	e	line:202
+WM8960_ALC_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	203;"	e	line:203
+WM8960_ALC_3	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	204;"	e	line:204
+WM8960_ANTI_POP_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	213;"	e	line:213
+WM8960_ANTI_POP_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	214;"	e	line:214
+WM8960_AUDIO_INTERFACE_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	195;"	e	line:195
+WM8960_AUDIO_INTERFACE_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	197;"	e	line:197
+WM8960_BYPASS_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	226;"	e	line:226
+WM8960_BYPASS_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	227;"	e	line:227
+WM8960_CLASS_D_CTRL_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	230;"	e	line:230
+WM8960_CLASS_D_CTRL_3	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	231;"	e	line:231
+WM8960_CLOCKING_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	192;"	e	line:192
+WM8960_CLOCKING_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	196;"	e	line:196
+WM8960_CODEC	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	138;"	t	line:138
+WM8960_I2C_ADDRESS::0x34	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	85;"	d	line:85
+WM8960_INPUT_BOOST_MIXER_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	224;"	e	line:224
+WM8960_INPUT_BOOST_MIXER_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	225;"	e	line:225
+WM8960_LEFT_ADC_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	206;"	e	line:206
+WM8960_LEFT_DAC_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	198;"	e	line:198
+WM8960_LEFT_INPUT_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	188;"	e	line:188
+WM8960_LEFT_OUT1_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	190;"	e	line:190
+WM8960_LEFT_OUT_MIX	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	217;"	e	line:217
+WM8960_LOUT2_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	221;"	e	line:221
+WM8960_MONO_OUT_MIX_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	219;"	e	line:219
+WM8960_MONO_OUT_MIX_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	220;"	e	line:220
+WM8960_MONO_OUT_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	223;"	e	line:223
+WM8960_NOISE_GATE	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	205;"	e	line:205
+WM8960_PLL_K_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	233;"	e	line:233
+WM8960_PLL_K_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	234;"	e	line:234
+WM8960_PLL_K_3	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	235;"	e	line:235
+WM8960_PLL_N	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	232;"	e	line:232
+WM8960_POWER_MGMT_1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	211;"	e	line:211
+WM8960_POWER_MGMT_2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	212;"	e	line:212
+WM8960_POWER_MGMT_3	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	228;"	e	line:228
+WM8960_REGISTER	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	237;"	t	line:237
+WM8960_RESET	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	200;"	e	line:200
+WM8960_RIGHT_ADC_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	207;"	e	line:207
+WM8960_RIGHT_DAC_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	199;"	e	line:199
+WM8960_RIGHT_INPUT_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	189;"	e	line:189
+WM8960_RIGHT_OUT1_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	191;"	e	line:191
+WM8960_RIGHT_OUT_MIX	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	218;"	e	line:218
+WM8960_ROUT2_VOLUME	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	222;"	e	line:222
+WM8960_SAMPLE_RATE	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	264;"	t	line:264
+WM8960_TOTAL_REGISTERS::56	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	239;"	d	line:239
+_GRAPHICSCONFIG_H	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\GraphicsConfig.h	42;"	d	line:42
+_MAINDEMO_H	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	37;"	d	line:37
+_WM8960DRV_H_	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	39;"	d	line:39
+__TICK_H	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\Tick.h	54;"	d	line:54
+altScheme	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	133;"	v	line:133
+audioIn	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	156;"	v	line:156
+audioWord	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	97;"	m	line:97
+buttonsFlag	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	147;"	v	line:147
+byte1	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	367;"	l	line:367
+byte2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	368;"	l	line:368
+codec	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	57;"	v	line:57
+codecRxBuffer	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	56;"	v	line:56
+codecTxBuffer	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	55;"	v	line:55
+command	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	351;"	l	line:351
+command	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	366;"	l	line:366
+command	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	654;"	l	line:654
+command	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	669;"	l	line:669
+command	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	949;"	l	line:949
+command	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	967;"	l	line:967
+controlID	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1248;"	l	line:1248
+countDemo	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	157;"	v	line:157
+countSetting	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	158;"	v	line:158
+currentSampleRate	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	160;"	v	line:160
+dataCount	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	151;"	v	line:151
+dest	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1273;"	l	line:1273
+dest	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	534;"	l	line:534
+din	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	77;"	v	line:77
+dout	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	76;"	v	line:76
+fftc::fft16c256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	75;"	d	line:75	file:
+fftio	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	80;"	v	line:80
+fftro	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	79;"	v	line:79
+graphicsMessage	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	134;"	v	line:134
+i	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1941;"	l	line:1941
+i	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1973;"	l	line:1973
+i	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	816;"	l	line:816
+i	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	148;"	l	line:148
+i	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	503;"	l	line:503
+i	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	524;"	l	line:524
+i	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	713;"	l	line:713
+icon_intro	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	3172;"	v	line:3172
+icon_loopback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	2128;"	v	line:2128
+icon_loopback_SIZE::11256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	39;"	d	line:39
+icon_pic32	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	127;"	v	line:127
+icon_pic32_SIZE::27726	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	7;"	d	line:7
+icon_playback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	2476;"	v	line:2476
+icon_playback_SIZE::11256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	41;"	d	line:41
+icon_record	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	2824;"	v	line:2824
+icon_record_SIZE::11256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	43;"	d	line:43
+icon_settings	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1780;"	v	line:1780
+icon_settings_SIZE::11256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	37;"	d	line:37
+icon_tback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1263;"	v	line:1263
+icon_tback_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	19;"	d	line:19
+icon_theadphone	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1491;"	v	line:1491
+icon_theadphone_SIZE::1256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	27;"	d	line:27
+icon_tlinein	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1096;"	v	line:1096
+icon_tlinein_SIZE::1256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	13;"	d	line:13
+icon_tloopback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1597;"	v	line:1597
+icon_tloopback_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	31;"	d	line:31
+icon_tmic	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1446;"	v	line:1446
+icon_tmic_SIZE::1256	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	25;"	d	line:25
+icon_tmute	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1141;"	v	line:1141
+icon_tmute_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	15;"	d	line:15
+icon_tpause	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	974;"	v	line:974
+icon_tpause_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	9;"	d	line:9
+icon_tplay	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1035;"	v	line:1035
+icon_tplay_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	11;"	d	line:11
+icon_tplayback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1658;"	v	line:1658
+icon_tplayback_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	33;"	d	line:33
+icon_trecord	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1719;"	v	line:1719
+icon_trecord_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	35;"	d	line:35
+icon_trecord_d	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1324;"	v	line:1324
+icon_trecord_d_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	21;"	d	line:21
+icon_trecord_p	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1385;"	v	line:1385
+icon_trecord_p_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	23;"	d	line:23
+icon_tselect	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	66;"	v	line:66
+icon_tselect_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	5;"	d	line:5
+icon_tsettings	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1536;"	v	line:1536
+icon_tsettings_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	29;"	d	line:29
+icon_tunmute	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	1202;"	v	line:1202
+icon_tunmute_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	17;"	d	line:17
+icon_tunselect	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\icons_adb.c	5;"	v	line:5
+icon_tunselect_SIZE::1806	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	3;"	d	line:3
+intro_SIZE::17238	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\icons_adb.h	45;"	d	line:45
+j	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1941;"	l	line:1941
+leftChannel	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	95;"	m	line:95
+loopback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	142;"	v	line:142
+main	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	170;"	f	line:170	signature:(void)
+mem	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	11;"	m	line:11	file:
+mem	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	158;"	m	line:158	file:
+mem	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	232;"	m	line:232	file:
+muteFlag	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	146;"	v	line:146
+nReadSamples	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	712;"	l	line:712
+nWrittenSamples	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	523;"	l	line:523
+outData	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	70;"	v	line:70
+pCodecHandle	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	66;"	v	line:66
+pCommandData	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1512;"	l	line:1512
+pCommandData	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1757;"	l	line:1757
+playFlag	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	145;"	v	line:145
+playback	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	141;"	v	line:141
+playbackFlag	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	144;"	v	line:144
+playbackFlag	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	149;"	v	line:149
+ppBufferCount	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	130;"	m	line:130
+ppBufferCountR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	134;"	m	line:134
+ppBufferIsBusy	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	129;"	m	line:129
+ppBufferIsBusyR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	133;"	m	line:133
+ppFlag	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	128;"	m	line:128
+ppFlag	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1284;"	l	line:1284
+ppFlagR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	132;"	m	line:132
+ppFlagR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1321;"	l	line:1321
+ptr	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	11;"	m	line:11	file:
+ptr	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	158;"	m	line:158	file:
+ptr	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\Font25PixelsHeight.c	232;"	m	line:232	file:
+read	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1257;"	l	line:1257
+record	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	140;"	v	line:140
+recordFlag	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	148;"	v	line:148
+result	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	655;"	l	line:655
+result	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	670;"	l	line:670
+result	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	876;"	l	line:876
+result	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	950;"	l	line:950
+result	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	968;"	l	line:968
+rightChannel	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	94;"	m	line:94
+rxBuffer	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	121;"	m	line:121
+rxReadPtr	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	124;"	m	line:124
+rxWritePtr	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	125;"	m	line:125
+scratch	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	78;"	v	line:78
+screenTab	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	137;"	v	line:137
+secBuffer	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	159;"	v	line:159
+secCount	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	152;"	v	line:152
+settings	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	143;"	v	line:143
+size	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1275;"	l	line:1275
+size	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1297;"	l	line:1297
+sizeR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1314;"	l	line:1314
+sizeR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1339;"	l	line:1339
+sizeof	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1298;"	p	line:1298	file:
+sizeof	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1340;"	p	line:1340	file:
+sizeof	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	311;"	p	line:311	file:
+spiFlags	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	147;"	l	line:147
+src	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1312;"	l	line:1312
+src	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	725;"	l	line:725
+stateScreen	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	135;"	v	line:135
+stateScreen	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	136;"	v	line:136
+switchBouncing	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1314;"	l	line:1314	file:
+switchBouncing	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1410;"	l	line:1410	file:
+switchBouncing	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1513;"	l	line:1513	file:
+switchBouncing	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1758;"	l	line:1758	file:
+switchTime	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1315;"	l	line:1315	file:
+switchTime	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1411;"	l	line:1411	file:
+switchTime	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1514;"	l	line:1514	file:
+switchTime	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1759;"	l	line:1759	file:
+tabSetting	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	155;"	v	line:155
+thisCodec	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	40;"	v	line:40
+tickStart	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	150;"	v	line:150
+txBuffer	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	120;"	m	line:120
+txReadPtr	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	122;"	m	line:122
+txWritePtr	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\WM8960Drv.h	123;"	m	line:123
+uitoa2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\h\MainDemo.h	70;"	p	line:70	signature:(WORD Value, BYTE* Buffer)
+uitoa2	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	1973;"	f	line:1973	signature:(WORD Value, BYTE* Buffer)
+usePPBuffer	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	533;"	l	line:533
+usePPBufferR	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	724;"	l	line:724
+volADC	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	153;"	v	line:153
+volADCIndication	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	138;"	v	line:138
+volDAC	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	154;"	v	line:154
+volDACIndication	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\MainDemo.c	139;"	v	line:139
+volumeA	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	877;"	l	line:877
+volumeD	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	878;"	l	line:878
+written	C:\Workplace\Audio Development Board\ADB Main Demo\PIC32 ADB Img\PIC32 Audio Development Board Demo\src\WM8960Drv.c	1240;"	l	line:1240
