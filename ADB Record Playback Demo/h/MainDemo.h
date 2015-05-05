@@ -69,8 +69,6 @@ UINT16 ProcessMessageDemoSelection(UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_M
 void ResetCodec(unsigned int sample_rate, int audio_in);
 void CreateSettingsScreen(void);
 void uitoa2(WORD Value, BYTE* Buffer);
-inline void GetFromInput();
-inline void SendToOutput();
 void Distortion();
 void Octave();
 

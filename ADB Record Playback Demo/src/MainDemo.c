@@ -69,8 +69,6 @@ STEREO_AUDIO_DATA Sout[FRAME_SIZE];
 
 FSFILE* outData;
 
-INT16 audio[FRAME_SIZE];
-
 ////////Pitch Shifter Variables Declaration////////
 //#define             WINDOW_SIZE  512
 //#define             HOP_SIZE    128
@@ -80,12 +78,13 @@ INT16 audio[FRAME_SIZE];
 //INT16 *frameMatrix[FRAMES][WINDOW_SIZE];
 
 ////////Fast Fourier Transform Data Declaration////////
-//#define 			REAL_N 512
-//#define 			REAL_LOGN 9
-//#define 			fftc fft16c512
-//int16c dout[REAL_N];
-//int16c din[REAL_N];
-//int16c scratch[REAL_N];
+#define 			N 1024
+#define 			LOGN 10
+#define 			fftc fft16c1024
+int16c dout[N];
+int16c din[N];
+int16c temp[N];
+int16c scratch[N];
 //int16 fftro[REAL_N];
 //int16 fftio[REAL_N];
 
@@ -989,12 +988,11 @@ void CreateScreenLoopback(void) {
 inline void AudioLoopback(void) {
     WM8960CodecRead(pCodecHandle, Sin, FRAME_SIZE);
     PORTSetBits(IOPORT_D, BIT_0);
-    GetFromInput();
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //Distortion();
-    
+
     Octave();
 
 
@@ -1003,7 +1001,6 @@ inline void AudioLoopback(void) {
         Sin[i].rightChannel = Sin[i].leftChannel;
     }
 
-    SendToOutput();
     WM8960CodecWrite(pCodecHandle, Sin, FRAME_SIZE);
     PORTClearBits(IOPORT_D, BIT_0);
 }
@@ -1919,49 +1916,59 @@ void uitoa2(WORD Value, BYTE* Buffer) {
     *Buffer = '\0';
 }
 
-inline void GetFromInput() {
-    int i;
-    for (i = 0; i < FRAME_SIZE; i++) {
-        audio[i] = Sin[i].leftChannel;
-    }
-}
-
-inline void SendToOutput() {
-    int i;
-    for (i = 0; i < FRAME_SIZE; i++) {
-        Sin[i].leftChannel = audio[i];
-    }
-}
-
 void Distortion() {
     //Int 16 -- (-32,768 to +32,767)
     int i = 0;
     INT16 treshold = 2000;
     INT16 clamp = 3000;
     while (i < FRAME_SIZE) {
-        if (audio[i] > treshold) {
-            audio[i] = clamp;
+        if (Sin[i].leftChannel > treshold) {
+            Sin[i].leftChannel = clamp;
         }
-        if (audio[i] < -treshold) {
-            audio[i] = -clamp;
+        if (Sin[i].leftChannel < -treshold) {
+            Sin[i].leftChannel = -clamp;
         }
 
-        if (audio[i] > treshold) {
-            audio[i] = clamp;
+        if (Sin[i].leftChannel > treshold) {
+            Sin[i].leftChannel = clamp;
         }
-        if (audio[i] < -treshold) {
-            audio[i] = -clamp;
+        if (Sin[i].leftChannel < -treshold) {
+            Sin[i].leftChannel = -clamp;
         }
         i++;
     }
 }
-
+//fft16 strasne utlmuje signal, aby som mohol pracovat musim si vsetko prerobit na 32 bit
 void Octave() {
-    
+    int i;
+    for (i = 0; i < FRAME_SIZE; i++) {
+        din[i].re = 20 * Sin[i].leftChannel;
+        din[i].im = 20 * 0;
+    }
+
+    //mips_fft16(temp, din, (int16c *) fftc, scratch, LOGN);
+    mips_fft16(temp, din, fftc, scratch, LOGN);
+
+
+
+    int j;
+    for (j = 0; j < FRAME_SIZE; j++) {
+        temp[j].re = 20 * temp[j].re;
+        temp[j].im = 20 * (0 - temp[j].im);
+    }
+
+    //mips_fft16(dout, temp, (int16c *) fftc, scratch, LOGN);
+    mips_fft16(dout, temp, fftc, scratch, LOGN);
+
+
+    int k;
+    for (k = 0; k < FRAME_SIZE; k++) {
+        Sin[k].leftChannel = 100 * dout[k].re;
+    }
 
     /*
     char print[30];
-    sprintf(print, "%i", max);
+    sprintf(print, "%i", din[0].re);
     SetColor(WHITE);
     Bar(100, 20, 160, 40);
     SetColor(BLACK);
