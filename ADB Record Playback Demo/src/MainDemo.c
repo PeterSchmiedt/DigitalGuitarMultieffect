@@ -1962,14 +1962,6 @@ void Overdrive() {
         }
 
     }
-    /*
-    char print[30];
-    sprintf(print, "%f", temp);
-    SetColor(WHITE);
-    Bar(100, 20, 160, 40);
-    SetColor(BLACK);
-    OutTextXY(100, 20, print);
-     */
 }
 
 /*
