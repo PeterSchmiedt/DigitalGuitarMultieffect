@@ -52,22 +52,17 @@
 #include <math.h>
 
 
+
 void InitializeHardware(void);
 void CheckButtons(GOL_MSG *message);
-inline void ShowScreenRecord(void);
-inline void ShowScreenPlayback(void);
 inline void AudioLoopback(void);
-void CheckScreenDemoSelection(void);
-void ShowInsertUSBRecord(void);
 void CreateScreenLoopback(void);
-void ShowInsertUSBPlayback(void);
+void CreateScreenUSB(void);
+inline void ReadUSBData(void);
 UINT16 GOLDrawCallback(void);
 UINT16 GOLMsgCallback(UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg);
-void ShowScreenDemoSelection(void);
 UINT16 ProcessMessageDemoSelection(UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg);
-//inline void PerformFFT(void);
 void ResetCodec(unsigned int sample_rate, int audio_in);
-void CreateSettingsScreen(void);
 void uitoa2(WORD Value, BYTE* Buffer);
 void Fuzz();
 void Overdrive();
