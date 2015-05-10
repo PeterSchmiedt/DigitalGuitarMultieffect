@@ -38,8 +38,9 @@ typedef struct {
 } FX_DATA_STRUCT;
 
 FX_DATA_STRUCT fxData[5];
-
+FX_DATA_STRUCT* fxCurrectData;
 INT16 fxPointer = 0;
+INT32 tmpCounter = 0;
 
 char charBuffer;
 char charArray[100];
@@ -68,7 +69,8 @@ typedef enum {
     STATE_DISPLAY_SHOW_USB,
     STATE_SHOW_CLEAR_USB,
     STATE_SHOW_INSERT_USB,
-    STATE_SHOW_USB
+    STATE_SHOW_USB,
+    STATE_SHOW_USB_DONE
 } STATES_GRAPHICS;
 
 typedef enum {
@@ -218,6 +220,11 @@ UINT16 GOLDrawCallback(void) {
 
         case STATE_SHOW_USB:
             ReadUSBData();
+            stateScreen = STATE_SHOW_USB_DONE;
+            break;
+
+        case STATE_SHOW_USB_DONE:
+            ReadUSBDataDone();
             break;
     }
 
@@ -494,28 +501,19 @@ void CreateScreenUSB(void) {
 inline void ReadUSBData(void) {
     PORTSetBits(IOPORT_C, BIT_13);
 
-    //FSfwrite(fxData, sizeof (FX_DATA_STRUCT), 5, fxFile);
-    //FSfclose(fxFile);
-
     while (!FSfeof(fxFile)) {
         FSfread((char*) &charBuffer, sizeof (char), 1, fxFile);
         charArray[charArraySize] = charBuffer;
         charArraySize++;
     }
-    SetColor(BLACK);
-    //OutTextXY(0, 0, "DONE");
+
     FSfclose(fxFile);
 
-    SetFont((void *) &GOLSmallFont);
-
     //PARSE THE DATA
-    int fontSize = GetTextHeight((void *) &GOLSmallFont);
-
     char* token = strtok(charArray, "\n");
     int i;
     for (i = 0; i < fxDataCount; i++) {
         fxData[i].fuzzIsOn = atoi(token);
-        //memcpy(&fxData[0].fuzzIsOn, token, sizeof(INT8));
         token = strtok(NULL, "\n");
         fxData[i].fuzzGain = atoi(token);
         token = strtok(NULL, "\n");
@@ -527,14 +525,20 @@ inline void ReadUSBData(void) {
         token = strtok(NULL, "\n");
     }
 
+    SetColor(WHITE);
+    OutTextXY(GetMaxX() / 2 - GetTextWidth("USB Device inserted...", (void *) &Font25) / 2, 50 + GetTextHeight((void *) &Font25), "USB Device inserted...");
 
+    PORTClearBits(IOPORT_C, BIT_13);
+}
 
+inline void ReadUSBDataDone(void) {
+    PORTSetBits(IOPORT_C, BIT_13);
 
-    char print[30];
-    sprintf(print, "%i", fxData[4].overdriveTreshold);
-    OutTextXY(20, 0, print);
+    SetColor(BLACK);
+    OutTextXY(GetMaxX() / 2 - GetTextWidth("DONE", (void *) &Font25) / 2, 50 + GetTextHeight((void *) &Font25), "DONE");
 
     fxPointer = 0;
+    PORTClearBits(IOPORT_C, BIT_13);
 }
 
 /****************************************************************************
@@ -747,9 +751,15 @@ void CheckButtons(GOL_MSG *message) {
                     break;
 
                 case STATE_SHOW_USB:
+                    stateScreen = STATE_DISPLAY_SHOW_LOOPBACK;
+                    break;
                 case STATE_SHOW_INSERT_USB:
                     stateScreen = STATE_DISPLAY_SHOW_LOOPBACK;
                     break;
+                case STATE_SHOW_USB_DONE:
+                    stateScreen = STATE_DISPLAY_SHOW_LOOPBACK;
+                    break;
+
                 default: break;
 
             }

@@ -59,6 +59,7 @@ inline void AudioLoopback(void);
 void CreateScreenLoopback(void);
 void CreateScreenUSB(void);
 inline void ReadUSBData(void);
+inline void ReadUSBDataDone(void);
 UINT16 GOLDrawCallback(void);
 UINT16 GOLMsgCallback(UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg);
 UINT16 ProcessMessageDemoSelection(UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg);
