@@ -37,10 +37,10 @@ typedef struct {
     INT16 overdriveTreshold;
 } FX_DATA_STRUCT;
 
-FX_DATA_STRUCT fxData[5];
-FX_DATA_STRUCT* fxCurrectData;
-INT16 fxPointer = 0;
-INT32 tmpCounter = 0;
+#define             FX_MAX_PRESETS 5
+FX_DATA_STRUCT fxData[FX_MAX_PRESETS];
+FX_DATA_STRUCT* fxCurrentData;
+INT8 fxCurrentPreset = 0;
 
 char charBuffer;
 char charArray[100];
@@ -426,6 +426,8 @@ void InitializeHardware(void) {
     fxData[4].overdriveTreshold = 32767;
 
 
+    fxCurrentData = &fxData[0];
+
     // Initialize audio codec.	
     pCodecHandle = WM8960CodecOpen(O_RDWR);
     WM8960CodecStartAudio(pCodecHandle, TRUE);
@@ -485,6 +487,7 @@ void InitializeHardware(void) {
 }
 
 void CreateScreenUSB(void) {
+    GOLFree();
     SetColor(WHITE);
     ClearDevice();
 
@@ -537,7 +540,7 @@ inline void ReadUSBDataDone(void) {
     SetColor(BLACK);
     OutTextXY(GetMaxX() / 2 - GetTextWidth("DONE", (void *) &Font25) / 2, 50 + GetTextHeight((void *) &Font25), "DONE");
 
-    fxPointer = 0;
+    fxCurrentPreset = 0;
     PORTClearBits(IOPORT_C, BIT_13);
 }
 
@@ -571,15 +574,30 @@ void CreateScreenLoopback(void) {
     SetFont((void *) &Font25);
     SetColor(BLACK);
     OutTextXY(5, 5, "Preset: ");
-    OutTextXY(GetTextWidth("Preset: ", (void *) &Font25), 5, "20");
 
+    RedrawScreenLoopback();
 
-
-    SetColor(WHITE);
-    //Line(30, GetMaxY() - 125, 30, GetMaxY() - 33);
-    //Line(30, GetMaxY() - 33, 160, GetMaxY() - 33);
-    //ResetCodec(SAMPLE_RATE_48000_HZ, MICROPHONE);
     ResetCodec(SAMPLE_RATE_48000_HZ, LINEIN);
+}
+
+void RedrawScreenLoopback(void) {
+    char print[30];
+    sprintf(print, "%i", fxCurrentPreset + 1);
+    SetFont((void *) &Font25);
+    SetColor(WHITE);
+    Bar(GetTextWidth("Preset:  ", (void *) &Font25), 5, GetTextWidth("Preset:  ", (void *) &Font25) + 30, GetTextHeight((void *) &Font25) + 5);
+
+    SetColor(BLACK);
+    OutTextXY(GetTextWidth("Preset:  ", (void *) &Font25), 5, print);
+
+    //create a blank
+    SetColor(WHITE);
+    Bar(0, GetTextHeight((void*) &Font25), GetMaxX(), GetMaxY() - 30);
+    //Print the actual data on the device
+    SetFont((void*) &GOLSmallFont);
+    sprintf(print, "%i", fxCurrentData->fuzzGain);
+    SetColor(BLACK);
+    OutTextXY(5, 50, print);
 }
 
 /****************************************************************************
@@ -663,7 +681,15 @@ void CheckButtons(GOL_MSG *message) {
         } else if (BUTTON_VOLUME_DOWN_IO == 0) {
             switch (stateScreen) {
                 case STATE_SHOW_LOOPBACK:
-                    //TODO implement changing in the PRESETs of the algorithm
+                    if (fxCurrentPreset == 0) {
+                        fxCurrentPreset = FX_MAX_PRESETS - 1;
+                    } else {
+                        fxCurrentPreset--;
+                    }
+
+                    fxCurrentData = &fxData[fxCurrentPreset];
+                    //redraw the loopback screen with new FX data
+                    RedrawScreenLoopback();
                     break;
                 default: break;
 
@@ -688,7 +714,15 @@ void CheckButtons(GOL_MSG *message) {
 
             switch (stateScreen) {
                 case STATE_SHOW_LOOPBACK:
-                    //TODO implement changing in the PRESETs of the algorithm
+                    if (fxCurrentPreset == FX_MAX_PRESETS - 1) {
+                        fxCurrentPreset = 0;
+                    } else {
+                        fxCurrentPreset++;
+                    }
+
+                    fxCurrentData = &fxData[fxCurrentPreset];
+                    //redraw the loopback screen with new FX data
+                    RedrawScreenLoopback();
                     break;
                 default: break;
 

@@ -57,6 +57,7 @@ void InitializeHardware(void);
 void CheckButtons(GOL_MSG *message);
 inline void AudioLoopback(void);
 void CreateScreenLoopback(void);
+void RedrawScreenLoopback(void);
 void CreateScreenUSB(void);
 inline void ReadUSBData(void);
 inline void ReadUSBDataDone(void);
