@@ -37,6 +37,7 @@ typedef struct {
     INT16 overdriveTreshold;
 } FX_DATA_STRUCT;
 
+const INT16 INT16_MAX = 32767;
 #define             FX_MAX_PRESETS 5
 FX_DATA_STRUCT fxData[FX_MAX_PRESETS];
 FX_DATA_STRUCT* fxCurrentData;
@@ -640,44 +641,6 @@ void RedrawScreenLoopback(void) {
 
 /****************************************************************************
   Function:
-     void AudioLoopback(void);
-
-  Description:
-    This function captures and plays back audio.
-
-  Precondition:
-    None
-
-  Parameters:
-    None
-
-  Returns:
-    None
-
-  Remarks:
-    None.
- ***************************************************************************/
-
-inline void AudioLoopback(void) {
-    WM8960CodecRead(pCodecHandle, Sin, FRAME_SIZE);
-    PORTSetBits(IOPORT_D, BIT_0);
-
-    //Overdrive();
-
-    //Fuzz();
-
-
-    int i;
-    for (i = 0; i < FRAME_SIZE; i++) {
-        Sin[i].rightChannel = Sin[i].leftChannel;
-    }
-
-    WM8960CodecWrite(pCodecHandle, Sin, FRAME_SIZE);
-    PORTClearBits(IOPORT_D, BIT_0);
-}
-
-/****************************************************************************
-  Function:
      inline void CheckButtons( GOL_MSG *message );
 
   Description:
@@ -902,10 +865,56 @@ void uitoa2(WORD Value, BYTE* Buffer) {
     *Buffer = '\0';
 }
 
-void Fuzz() {
-    INT16 INT16_MAX = 32767;
-    INT16 gain = 100; //gain - amount of distortion, gain>1
-    INT16 mix = 20; //mix - mix of original and distorted sound, 1=only distorted mix>=1
+/****************************************************************************
+  Function:
+     void AudioLoopback(void);
+
+  Description:
+    This function captures and plays back audio.
+
+  Precondition:
+    None
+
+  Parameters:
+    None
+
+  Returns:
+    None
+
+  Remarks:
+    None.
+ ***************************************************************************/
+
+inline void AudioLoopback(void) {
+    WM8960CodecRead(pCodecHandle, Sin, FRAME_SIZE);
+    PORTSetBits(IOPORT_D, BIT_0);
+
+    int i;
+    for (i = 0; i < 5; i++) {
+
+
+    }
+
+
+    if (fxCurrentData->overdriveIsOn == 1) {
+        Overdrive(fxCurrentData->overdriveTreshold);
+    }
+    if (fxCurrentData->fuzzIsOn == 1) {
+        Fuzz(fxCurrentData->fuzzGain, fxCurrentData->fuzzMix);
+    }
+
+    /*int i;
+    for (i = 0; i < FRAME_SIZE; i++) {
+        Sin[i].rightChannel = Sin[i].leftChannel;
+    }*/
+
+    WM8960CodecWrite(pCodecHandle, Sin, FRAME_SIZE);
+    PORTClearBits(IOPORT_D, BIT_0);
+}
+
+void Fuzz(INT16 gain, INT16 mix) {
+    //INT16 gain = 100; //gain - amount of distortion, gain>1
+    //INT16 mix = 20; //mix - mix of original and distorted sound, 1=only distorted mix>=1
     INT32 q[FRAME_SIZE];
     INT32 z[FRAME_SIZE];
 
@@ -922,8 +931,8 @@ void Fuzz() {
 
 }
 
-void Overdrive() {
-    INT16 treshold = 2000;
+void Overdrive(INT16 treshold) {
+    //INT16 treshold = 2000;
     INT16 tresholdTimesThree = treshold * 3;
     int i;
     for (i = 0; i < FRAME_SIZE; i++) {
