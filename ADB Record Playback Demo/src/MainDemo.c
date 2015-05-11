@@ -573,7 +573,7 @@ void CreateScreenLoopback(void) {
     PutImage(160, GetMaxY() - 30, (void*) &icon_tunmute, 1);
     SetFont((void *) &Font25);
     SetColor(BLACK);
-    OutTextXY(5, 5, "Preset: ");
+    OutTextXY(5, 0, "Preset: ");
 
     RedrawScreenLoopback();
 
@@ -582,22 +582,60 @@ void CreateScreenLoopback(void) {
 
 void RedrawScreenLoopback(void) {
     char print[30];
-    sprintf(print, "%i", fxCurrentPreset + 1);
+
     SetFont((void *) &Font25);
     SetColor(WHITE);
-    Bar(GetTextWidth("Preset:  ", (void *) &Font25), 5, GetTextWidth("Preset:  ", (void *) &Font25) + 30, GetTextHeight((void *) &Font25) + 5);
+    Bar(GetTextWidth("Preset:  ", (void *) &Font25), 0, GetTextWidth("Preset:  ", (void *) &Font25) + 30, GetTextHeight((void *) &Font25) + 5);
 
     SetColor(BLACK);
-    OutTextXY(GetTextWidth("Preset:  ", (void *) &Font25), 5, print);
+    sprintf(print, "%i", fxCurrentPreset + 1);
+    OutTextXY(GetTextWidth("Preset:  ", (void *) &Font25), 0, print);
+
+    SetLineType(SOLID_LINE);
+    SetLineThickness(1);
+    Line(0, GetTextHeight((void *) &Font25), GetMaxX(), GetTextHeight((void *) &Font25));
 
     //create a blank
     SetColor(WHITE);
     Bar(0, GetTextHeight((void*) &Font25), GetMaxX(), GetMaxY() - 30);
     //Print the actual data on the device
     SetFont((void*) &GOLSmallFont);
-    sprintf(print, "%i", fxCurrentData->fuzzGain);
     SetColor(BLACK);
-    OutTextXY(5, 50, print);
+    SHORT topOffset = GetTextHeight((void*) &Font25);
+    SHORT textOffset = GetTextHeight((void*) &GOLSmallFont);
+    //FUZZ
+    OutTextXY(5, topOffset, "FUZZ ");
+    if (fxCurrentData->fuzzIsOn == 1) {
+        SetColor(BRIGHTGREEN);
+        OutText("ON");
+    } else {
+        SetColor(BRIGHTRED);
+        OutText("OFF");
+    }
+    SetColor(BLACK);
+
+    OutTextXY(5, topOffset + textOffset, "Gain: ");
+    sprintf(print, "%i", fxCurrentData->fuzzGain);
+    OutText(print);
+
+    OutTextXY(5, topOffset + textOffset * 2, "Mix: ");
+    sprintf(print, "%i", fxCurrentData->fuzzMix);
+    OutText(print);
+
+    //OVERDRIVE
+    OutTextXY(5 + 60, topOffset, "OVERDRIVE ");
+    if (fxCurrentData->overdriveIsOn == 1) {
+        SetColor(BRIGHTGREEN);
+        OutText("ON");
+    } else {
+        SetColor(BRIGHTRED);
+        OutText("OFF");
+    }
+    SetColor(BLACK);
+
+    OutTextXY(5 + 60, topOffset + textOffset, "Treshold: ");
+    sprintf(print, "%i", fxCurrentData->overdriveTreshold);
+    OutText(print);
 }
 
 /****************************************************************************
@@ -623,8 +661,6 @@ void RedrawScreenLoopback(void) {
 inline void AudioLoopback(void) {
     WM8960CodecRead(pCodecHandle, Sin, FRAME_SIZE);
     PORTSetBits(IOPORT_D, BIT_0);
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //Overdrive();
 
