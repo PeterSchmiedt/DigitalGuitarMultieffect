@@ -65,7 +65,10 @@ UINT16 GOLDrawCallback(void);
 UINT16 GOLMsgCallback(UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg);
 void ResetCodec(unsigned int sample_rate, int audio_in);
 void uitoa2(WORD Value, BYTE* Buffer);
-void Fuzz(INT16 gain, INT16 mix);
-void Overdrive(INT16 treshold);
+
+void BandPassFilter(void);
+
+void Fuzz(int i);
+void Overdrive(int i);
 
 #endif // _MAINDEMO_H
