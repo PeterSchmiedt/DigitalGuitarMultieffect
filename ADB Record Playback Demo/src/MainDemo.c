@@ -698,8 +698,8 @@ void CreateScreenLoopback(void) {
     AutoWah_init(2000, /*Effect rate 2000*/
             24000, /*Sampling Frequency*/
             1000, /*Maximum frequency*/
-            500, /*Minimum frequency*/
-            4, /*Q*/
+            300, /*Minimum frequency*/
+            5, /*Q*/
             0.707, /*Gain factor*/
             10 /*Frequency increment*/
             );
@@ -1016,18 +1016,18 @@ inline void AudioLoopback(void) {
     PORTSetBits(IOPORT_D, BIT_0);
     //OVERDRIVE
     tresholdTimesThree = fxCurrentData->overdriveTreshold * 3;
-    
+
     INT16 old;
 
     if (fxCurrentData->fuzzIsOn == 1) {
         int j;
         for (j = 0; j < FRAME_SIZE; j++) {
             //Sin[j].leftChannel = mips_iir16(Sin[j].leftChannel, coeffs, delayline, B, 1);
-            
-            
+
+
             old = Sin[j].leftChannel;
-            Sin[j].leftChannel = AutoWah_process(old) * 4;
-            AutoWah_sweep();
+            Sin[j].leftChannel = AutoWah_process(old) * 10;
+            AutoWah_sweep(old);
         }
     }
 
@@ -1118,11 +1118,13 @@ static short center_freq;
 static short samp_freq;
 static short counter;
 static short counter_limit;
-static short direction;
 static short max_freq;
 static short min_freq;
 static short f_step;
 static struct bp_filter H;
+static double a[3];
+static double b[3];
+double x[3], y[3];
 
 /*
 This is the auto wah effect initialization function. 
@@ -1131,21 +1133,33 @@ This initializes the band pass filter and the effect control variables
 void AutoWah_init(short effect_rate, short sampling, short maxf, short minf, short Q, double gainfactor, short freq_step) {
     double C;
 
-    /*Process variables*/
+    //Process variables
     center_freq = 0;
     samp_freq = sampling;
     counter = effect_rate;
-    direction = 0;
 
-    /*User Parametters*/
+    //User Parametters
     counter_limit = effect_rate;
 
-    /*Convert frequencies to index ranges*/
+    //Convert frequencies to index ranges
     min_freq = 0;
     max_freq = (maxf - minf) / freq_step;
 
     bp_iir_init(sampling, gainfactor, Q, freq_step, minf);
     f_step = freq_step;
+
+    //Lowpass filter parameters	
+    /*
+       C = 1/TAN(PI*Fc/Fs)
+     */
+    C = 1018.59;
+
+    b[0] = 1 / (1 + 2 * 0.7071 * C + pow(C, 2));
+    b[1] = 2 * b[0];
+    b[2] = b[0];
+
+    a[1] = 2 * b[0]*(1 - pow(C, 2));
+    a[2] = b[0]*(1 - 2 * 0.7071 * C + pow(C, 2));
 }
 
 /*
@@ -1157,9 +1171,6 @@ double AutoWah_process(int xin) {
     double yout;
 
     yout = bp_iir_filter(xin, &H);
-#ifdef INPUT_UNSIGNED
-    yout += 32767;
-#endif
 
     return yout;
 }
@@ -1168,25 +1179,46 @@ double AutoWah_process(int xin) {
 This function will emulate a LFO that will vary according
 to the effect_rate parameter set in the AutoWah_init function.
  */
-void AutoWah_sweep(void) {
-	double yout;
-     
-	if (--counter == 0) {
-		if (direction == 0) {
-			bp_iir_setup(&H,(center_freq+=f_step));
-			if (center_freq > max_freq) {
-				direction = 1;
-			}
-		}
-		else {
-			bp_iir_setup(&H,(center_freq-=f_step));
-			if (center_freq == min_freq) {
-				direction = 0;
-			}
-		}
-        
-		counter = counter_limit; 
-	}
+void AutoWah_sweep(double xin) {
+    unsigned int filter_index;
+    double yout;
+
+    x[0] = x[1];
+    x[1] = x[2];
+    /*Here the input to the filter
+    is half rectified*/
+    x[2] = (xin > 0) ? xin : 0;
+
+    y[0] = y[1];
+    y[1] = y[2];
+
+    y[2] = b[0] * x[2];
+    y[2] += b[1] * x[1];
+    y[2] += b[2] * x[0];
+    y[2] -= a[1] * y[1];
+    y[2] -= a[2] * y[0];
+
+    if (!--counter) {
+        /*The output of the LPF (y[2]) is scaled by 0.1
+        in order to be used as a LFO to control the band pass filter
+         */
+        filter_index = (double) min_freq + y[2]*0.1;
+
+        /*The scaling value is determined as a value
+        that would keep the filter index within the
+        range of max_freq
+         */
+        if (filter_index > max_freq) {
+            filter_index = max_freq;
+        }
+        if (filter_index < 0) {
+            filter_index = 0;
+        }
+
+        bp_iir_setup(&H, filter_index);
+
+        counter = counter_limit;
+    }
 }
 
 #define BP_MAX_COEFS 120

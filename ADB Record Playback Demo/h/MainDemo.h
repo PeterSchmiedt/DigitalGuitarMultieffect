@@ -91,6 +91,6 @@ extern double bp_iir_filter(double yin,struct bp_filter * H);
 
 extern void AutoWah_init(short effect_rate,short sampling,short maxf,short minf,short Q,double gainfactor,short freq_step);
 extern double AutoWah_process(int xin);
-extern void AutoWah_sweep(void);
+void AutoWah_sweep(double xin);
 
 #endif // _MAINDEMO_H
