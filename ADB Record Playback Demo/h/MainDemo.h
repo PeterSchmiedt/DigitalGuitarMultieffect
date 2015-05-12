@@ -71,4 +71,26 @@ void BandPassFilter(void);
 void Fuzz(int i);
 void Overdrive(int i);
 
+struct bp_coeffs{
+	double e;
+	double p;
+	double d[3];
+};
+
+struct bp_filter{
+	double e;
+	double p;
+	double d[3];
+	double x[3];
+	double y[3];
+};
+
+extern void bp_iir_init(double fsfilt,double gb,double Q,short fstep, short fmin);
+extern void bp_iir_setup(struct bp_filter * H,int index);
+extern double bp_iir_filter(double yin,struct bp_filter * H);
+
+extern void AutoWah_init(short effect_rate,short sampling,short maxf,short minf,short Q,double gainfactor,short freq_step);
+extern double AutoWah_process(int xin);
+extern void AutoWah_sweep(void);
+
 #endif // _MAINDEMO_H

@@ -69,10 +69,15 @@ int32c scratch[N];
 
 ////////Auto-wah////////
 #define             B 4
+#define             BP_COUNTER_MAX 2;
 
-biquad16 bq[B];
-int16 coeffs[B * 4];
-int16 delayline[B * 2];
+//biquad16 bq[5][B];
+//int16 coeffs[B * 4];
+//int16 delayline[B * 2];
+
+//INT8 direction = 0;
+//INT16 filterNumber = 0;
+//INT16 bp_counter = BP_COUNTER_MAX;
 
 
 ////////Graphics Data Declaration////////
@@ -89,34 +94,11 @@ typedef enum {
     STATE_SHOW_USB_DONE
 } STATES_GRAPHICS;
 
-typedef enum {
-    ID_WINDOW,
-    ID_RECORD,
-    ID_PLAYBACK,
-    ID_LOOPBACK,
-    ID_SETTINGS,
-    ID_STATICTEXT1,
-    ID_SLIDER1,
-    ID_SLIDER2,
-    ID_RADIOBUTTON1,
-    ID_RADIOBUTTON2,
-    ID_RADIOBUTTON3,
-    ID_RADIOBUTTON4,
-    ID_RADIOBUTTON5,
-    ID_RADIOBUTTON6,
-    ID_RADIOBUTTON7
-} GRAPHIC_IDS;
-
-typedef enum {
-    TAB_LOOPBACK,
-} GRAPHIC_TABS;
-
 #define 			ADJUST_PIXELS 10
 GOL_SCHEME *altScheme;
 GOL_MSG graphicsMessage;
 STATES_GRAPHICS stateScreen;
 STATES_GRAPHICS stateScreen = STATE_DISPLAY_SHOW_LOOPBACK;
-GRAPHIC_TABS screenTab = TAB_LOOPBACK;
 SLIDER *volADCIndication;
 SLIDER *volDACIndication;
 BUTTON *record;
@@ -445,35 +427,121 @@ void InitializeHardware(void) {
     fxCurrentData = &fxData[0];
 
 
-    int i;
-    for (i = 0; i < B * 2; i++) {
-        delayline[i] = 0;
+    /*
+    int j;
+    for (j = 0; j < B * 2; j++) {
+        delayline[j] = 0;
     }
 
-    //auto wah
-    bq[0].b1 = -1097;
-    bq[0].b2 = 553;
-    bq[0].a1 = 32600;
-    bq[0].a2 = -16307;
 
-    bq[1].b1 = -6084;
-    bq[1].b2 = 3044;
-    bq[1].a1 = 32619;
-    bq[1].a2 = -16313;
+    //500-600-------------------------------------------------------------------
+    bq[0][0].b1 = -1097;
+    bq[0][0].b2 = 553;
+    bq[0][0].a1 = 32600;
+    bq[0][0].a2 = -16307;
 
-    bq[2].b1 = -6336;
-    bq[2].b2 = 3181;
-    bq[2].a1 = 32636;
-    bq[2].a2 = -16353;
+    bq[0][1].b1 = -6084;
+    bq[0][1].b2 = 3044;
+    bq[0][1].a1 = 32619;
+    bq[0][1].a2 = -16313;
 
-    bq[3].b1 = -17453;
-    bq[3].b2 = 8739;
-    bq[3].a1 = 32672;
-    bq[3].a2 = -16358;
+    bq[0][2].b1 = -6336;
+    bq[0][2].b2 = 3181;
+    bq[0][2].a1 = 32636;
+    bq[0][2].a2 = -16353;
+
+    bq[0][3].b1 = -17453;
+    bq[0][3].b2 = 8739;
+    bq[0][3].a1 = 32672;
+    bq[0][3].a2 = -16358;
+
+    //600-700-------------------------------------------------------------------
+    bq[1][0].b1 = -1077;
+    bq[1][0].b2 = 544;
+    bq[1][0].a1 = 32566;
+    bq[1][0].a2 = -16307;
+
+    bq[1][1].b1 = -6028;
+    bq[1][1].b2 = 3018;
+    bq[1][1].a1 = 32586;
+    bq[1][1].a2 = -16312;
+
+    bq[1][2].b1 = -5746;
+    bq[1][2].b2 = 2889;
+    bq[1][2].a1 = 32600;
+    bq[1][2].a2 = -16353;
+
+    bq[1][3].b1 = -18614;
+    bq[1][3].b2 = 9328;
+    bq[1][3].a1 = 32641;
+    bq[1][3].a2 = -16358;
+
+    //700-800-------------------------------------------------------------------
+    bq[2][0].b1 = -1102;
+    bq[2][0].b2 = 558;
+    bq[2][0].a1 = 32526;
+    bq[2][0].a2 = -16308;
+
+    bq[2][1].b1 = -5715;
+    bq[2][1].b2 = 2863;
+    bq[2][1].a1 = 32548;
+    bq[2][1].a2 = -16312;
+
+    bq[2][2].b1 = -6229;
+    bq[2][2].b2 = 3136;
+    bq[2][2].a1 = 32559;
+    bq[2][2].a2 = -16354;
+
+    bq[2][3].b1 = -16864;
+    bq[2][3].b2 = 8459;
+    bq[2][3].a1 = 32604;
+    bq[2][3].a2 = -16357;
+
+    //800-900-------------------------------------------------------------------
+    bq[3][0].b1 = -1181;
+    bq[3][0].b2 = 598;
+    bq[3][0].a1 = 32480;
+    bq[3][0].a2 = -16308;
+
+    bq[3][1].b1 = -5172;
+    bq[3][1].b2 = 2593;
+    bq[3][1].a1 = 32504;
+    bq[3][1].a2 = -16312;
+
+    bq[3][2].b1 = -6791;
+    bq[3][2].b2 = 3425;
+    bq[3][2].a1 = 32511;
+    bq[3][2].a2 = -16354;
+
+    bq[3][3].b1 = -15582;
+    bq[3][3].b2 = 7824;
+    bq[3][3].a1 = 32561;
+    bq[3][3].a2 = -16357;
+
+    //900-1000-------------------------------------------------------------------
+    bq[4][0].b1 = -1308;
+    bq[4][0].b2 = 665;
+    bq[4][0].a1 = 32429;
+    bq[4][0].a2 = -16308;
+
+    bq[4][1].b1 = -4563;
+    bq[4][1].b2 = 2289;
+    bq[4][1].a1 = 32455;
+    bq[4][1].a2 = -16312;
+
+    bq[4][2].b1 = -7059;
+    bq[4][2].b2 = 3567;
+    bq[4][2].a1 = 32458;
+    bq[4][2].a2 = -16354;
+
+    bq[4][3].b1 = -15128;
+    bq[4][3].b2 = 7606;
+    bq[4][3].a1 = 32514;
+    bq[4][3].a2 = -16357;
 
 
-    mips_iir16_setup(coeffs, bq, B);
-
+    mips_iir16_setup(coeffs, bq[filterNumber], B);
+     */
 
 
 
@@ -626,6 +694,15 @@ void CreateScreenLoopback(void) {
     OutTextXY(5, 0, "Preset: ");
 
     RedrawScreenLoopback();
+
+    AutoWah_init(2000, /*Effect rate 2000*/
+            24000, /*Sampling Frequency*/
+            1000, /*Maximum frequency*/
+            500, /*Minimum frequency*/
+            4, /*Q*/
+            0.707, /*Gain factor*/
+            10 /*Frequency increment*/
+            );
 
     ResetCodec(SAMPLE_RATE_48000_HZ, LINEIN);
 }
@@ -939,14 +1016,40 @@ inline void AudioLoopback(void) {
     PORTSetBits(IOPORT_D, BIT_0);
     //OVERDRIVE
     tresholdTimesThree = fxCurrentData->overdriveTreshold * 3;
+    
+    INT16 old;
 
     if (fxCurrentData->fuzzIsOn == 1) {
         int j;
         for (j = 0; j < FRAME_SIZE; j++) {
-            Sin[j].leftChannel = mips_iir16(Sin[j].leftChannel, coeffs, delayline, B, 1);
+            //Sin[j].leftChannel = mips_iir16(Sin[j].leftChannel, coeffs, delayline, B, 1);
+            
+            
+            old = Sin[j].leftChannel;
+            Sin[j].leftChannel = AutoWah_process(old) * 4;
+            AutoWah_sweep();
         }
     }
 
+    /*
+    if (--bp_counter == 0) {
+        if (direction == 0) {
+            filterNumber++;
+            mips_iir16_setup(coeffs, bq[filterNumber], B);
+            if (filterNumber >= 4) {
+                direction = 1;
+            }
+        } else {
+            filterNumber--;
+            mips_iir16_setup(coeffs, bq[filterNumber], B);
+            if (filterNumber <= 0) {
+                direction = 0;
+            }
+        }
+        bp_counter = BP_COUNTER_MAX;
+        
+    }
+     */
 
 
     /*
@@ -1009,6 +1112,149 @@ void Overdrive(int i) {
             Sin[i].leftChannel = -tresholdTimesThree;
         }
     }
+}
+
+static short center_freq;
+static short samp_freq;
+static short counter;
+static short counter_limit;
+static short direction;
+static short max_freq;
+static short min_freq;
+static short f_step;
+static struct bp_filter H;
+
+/*
+This is the auto wah effect initialization function. 
+This initializes the band pass filter and the effect control variables
+ */
+void AutoWah_init(short effect_rate, short sampling, short maxf, short minf, short Q, double gainfactor, short freq_step) {
+    double C;
+
+    /*Process variables*/
+    center_freq = 0;
+    samp_freq = sampling;
+    counter = effect_rate;
+    direction = 0;
+
+    /*User Parametters*/
+    counter_limit = effect_rate;
+
+    /*Convert frequencies to index ranges*/
+    min_freq = 0;
+    max_freq = (maxf - minf) / freq_step;
+
+    bp_iir_init(sampling, gainfactor, Q, freq_step, minf);
+    f_step = freq_step;
+}
+
+/*
+This function generates the current output value
+Note that if the input and output signal are integer
+unsigned types, we need to add a half scale offset
+ */
+double AutoWah_process(int xin) {
+    double yout;
+
+    yout = bp_iir_filter(xin, &H);
+#ifdef INPUT_UNSIGNED
+    yout += 32767;
+#endif
+
+    return yout;
+}
+
+/*
+This function will emulate a LFO that will vary according
+to the effect_rate parameter set in the AutoWah_init function.
+ */
+void AutoWah_sweep(void) {
+	double yout;
+     
+	if (--counter == 0) {
+		if (direction == 0) {
+			bp_iir_setup(&H,(center_freq+=f_step));
+			if (center_freq > max_freq) {
+				direction = 1;
+			}
+		}
+		else {
+			bp_iir_setup(&H,(center_freq-=f_step));
+			if (center_freq == min_freq) {
+				direction = 0;
+			}
+		}
+        
+		counter = counter_limit; 
+	}
+}
+
+#define BP_MAX_COEFS 120
+#define PI 3.1415926
+
+/*This is an array of the filter parameters object
+defined in the br_iir.h file*/
+static struct bp_coeffs bp_coeff_arr[BP_MAX_COEFS];
+
+/*This initialization function will create the
+band pass filter coefficients array, you have to specify:
+fsfilt = Sampling Frequency
+gb     = Gain at cut frequencies
+Q      = Q factor, Higher Q gives narrower band
+fstep  = Frequency step to increase center frequencies
+in the array
+fmin   = Minimum frequency for the range of center   frequencies
+ */
+void bp_iir_init(double fsfilt, double gb, double Q, short fstep, short fmin) {
+    int i;
+    double damp;
+    double wo;
+
+    damp = gb / sqrt(1 - pow(gb, 2));
+
+    for (i = 0; i < BP_MAX_COEFS; i++) {
+        wo = 2 * PI * (fstep * i + fmin) / fsfilt;
+        bp_coeff_arr[i].e = 1 / (1 + damp * tan(wo / (Q * 2)));
+        bp_coeff_arr[i].p = cos(wo);
+        bp_coeff_arr[i].d[0] = (1 - bp_coeff_arr[i].e);
+        bp_coeff_arr[i].d[1] = 2 * bp_coeff_arr[i].e * bp_coeff_arr[i].p;
+        bp_coeff_arr[i].d[2] = (2 * bp_coeff_arr[i].e - 1);
+    }
+}
+
+/*This function loads a given set of band pass filter coefficients acording to a center frequency index
+into a band pass filter object
+H = filter object
+ind = index of the array mapped to a center frequency
+ */
+void bp_iir_setup(struct bp_filter * H, int ind) {
+    H->e = bp_coeff_arr[ind].e;
+    H->p = bp_coeff_arr[ind].p;
+    H->d[0] = bp_coeff_arr[ind].d[0];
+    H->d[1] = bp_coeff_arr[ind].d[1];
+    H->d[2] = bp_coeff_arr[ind].d[2];
+}
+
+/*This function loads a given set of band pass filter coefficients acording to a center frequency index
+into a band pass filter object
+H = filter object
+ind = index of the array mapped to a center frequency
+ */
+double bp_iir_filter(double yin, struct bp_filter * H) {
+    double yout;
+
+    H->x[0] = H->x[1];
+    H->x[1] = H->x[2];
+    H->x[2] = yin;
+
+    H->y[0] = H->y[1];
+    H->y[1] = H->y[2];
+
+    H->y[2] = H->d[0] * H->x[2] - H->d[0] * H->x[0] + (H->d[1] * H->y[1]) - H->d[2] * H->y[0];
+
+    yout = H->y[2];
+
+    return yout;
 }
 
 /*
