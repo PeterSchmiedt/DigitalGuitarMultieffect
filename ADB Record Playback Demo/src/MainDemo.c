@@ -35,13 +35,18 @@ typedef struct {
 
     INT8 overdriveIsOn;
     INT16 overdriveTreshold;
+
+    INT8 wahIsOn;
+    INT16 wahEffectRate;
+    INT16 wahMinf;
+    INT16 wahMaxf;
+    INT16 wahQ;
 } FX_DATA_STRUCT;
 
-#define             FX_MAX_PRESETS 5
+#define             FX_MAX_PRESETS 10
 FX_DATA_STRUCT fxData[FX_MAX_PRESETS];
 FX_DATA_STRUCT* fxCurrentData;
 INT8 fxCurrentPreset = 0;
-
 char charBuffer;
 char charArray[100];
 INT16 charArraySize = 0;
@@ -68,16 +73,23 @@ int32c temp[N];
 int32c scratch[N];
 
 ////////Auto-wah////////
-#define             B 4
-#define             BP_COUNTER_MAX 2;
+#define BP_MAX_COEFS 120
+#define PI 3.1415926
 
-//biquad16 bq[5][B];
-//int16 coeffs[B * 4];
-//int16 delayline[B * 2];
+short center_freq;
+short samp_freq;
+short counter;
+short counter_limit;
+short max_freq;
+short min_freq;
+short f_step;
+struct bp_filter H;
+double a[3];
+double b[3];
+double x[3], y[3];
 
-//INT8 direction = 0;
-//INT16 filterNumber = 0;
-//INT16 bp_counter = BP_COUNTER_MAX;
+
+static struct bp_coeffs bp_coeff_arr[BP_MAX_COEFS];
 
 
 ////////Graphics Data Declaration////////
@@ -95,6 +107,8 @@ typedef enum {
 } STATES_GRAPHICS;
 
 #define 			ADJUST_PIXELS 10
+#define DEBOUNCE_TIME   (100 * (TICKS_PER_SECOND / 1000ull))
+
 GOL_SCHEME *altScheme;
 GOL_MSG graphicsMessage;
 STATES_GRAPHICS stateScreen;
@@ -112,7 +126,6 @@ BOOL buttonsFlag = FALSE;
 BOOL recordFlag = FALSE;
 BOOL playbackFlag = TRUE;
 UINT32 tickStart;
-UINT16 fxDataCount = 5; //USED
 UINT16 secCount = 0;
 UINT8 volADC = 100; //USED
 UINT8 volDAC = 100; //USED
@@ -393,157 +406,19 @@ void InitializeHardware(void) {
     PORTSetBits(IOPORT_D, BIT_5);
 
     //INITIALIZE the default FX data
-    fxData[0].fuzzIsOn = TRUE;
+    fxData[0].fuzzIsOn = FALSE;
     fxData[0].fuzzGain = 100;
     fxData[0].fuzzMix = 20;
     fxData[0].overdriveIsOn = FALSE;
     fxData[0].overdriveTreshold = 2000;
+    fxData[0].wahIsOn = FALSE;
+    fxData[0].wahEffectRate = 2000;
+    fxData[0].wahMinf = 300;
+    fxData[0].wahMaxf = 1000;
+    fxData[0].wahQ = 5;
 
-    fxData[1].fuzzIsOn = TRUE;
-    fxData[1].fuzzGain = 50;
-    fxData[1].fuzzMix = 1;
-    fxData[1].overdriveIsOn = FALSE;
-    fxData[1].overdriveTreshold = 2000;
-
-    fxData[2].fuzzIsOn = FALSE;
-    fxData[2].fuzzGain = 100;
-    fxData[2].fuzzMix = 20;
-    fxData[2].overdriveIsOn = TRUE;
-    fxData[2].overdriveTreshold = 2000;
-
-    fxData[3].fuzzIsOn = FALSE;
-    fxData[3].fuzzGain = 100;
-    fxData[3].fuzzMix = 20;
-    fxData[3].overdriveIsOn = TRUE;
-    fxData[3].overdriveTreshold = 1000;
-
-    fxData[4].fuzzIsOn = TRUE;
-    fxData[4].fuzzGain = 32767;
-    fxData[4].fuzzMix = 32767;
-    fxData[4].overdriveIsOn = TRUE;
-    fxData[4].overdriveTreshold = 32767;
-
-
+    //point to the current preset
     fxCurrentData = &fxData[0];
-
-
-    /*
-    int j;
-    for (j = 0; j < B * 2; j++) {
-        delayline[j] = 0;
-    }
-
-
-    //500-600-------------------------------------------------------------------
-    bq[0][0].b1 = -1097;
-    bq[0][0].b2 = 553;
-    bq[0][0].a1 = 32600;
-    bq[0][0].a2 = -16307;
-
-    bq[0][1].b1 = -6084;
-    bq[0][1].b2 = 3044;
-    bq[0][1].a1 = 32619;
-    bq[0][1].a2 = -16313;
-
-    bq[0][2].b1 = -6336;
-    bq[0][2].b2 = 3181;
-    bq[0][2].a1 = 32636;
-    bq[0][2].a2 = -16353;
-
-    bq[0][3].b1 = -17453;
-    bq[0][3].b2 = 8739;
-    bq[0][3].a1 = 32672;
-    bq[0][3].a2 = -16358;
-
-    //600-700-------------------------------------------------------------------
-    bq[1][0].b1 = -1077;
-    bq[1][0].b2 = 544;
-    bq[1][0].a1 = 32566;
-    bq[1][0].a2 = -16307;
-
-    bq[1][1].b1 = -6028;
-    bq[1][1].b2 = 3018;
-    bq[1][1].a1 = 32586;
-    bq[1][1].a2 = -16312;
-
-    bq[1][2].b1 = -5746;
-    bq[1][2].b2 = 2889;
-    bq[1][2].a1 = 32600;
-    bq[1][2].a2 = -16353;
-
-    bq[1][3].b1 = -18614;
-    bq[1][3].b2 = 9328;
-    bq[1][3].a1 = 32641;
-    bq[1][3].a2 = -16358;
-
-    //700-800-------------------------------------------------------------------
-    bq[2][0].b1 = -1102;
-    bq[2][0].b2 = 558;
-    bq[2][0].a1 = 32526;
-    bq[2][0].a2 = -16308;
-
-    bq[2][1].b1 = -5715;
-    bq[2][1].b2 = 2863;
-    bq[2][1].a1 = 32548;
-    bq[2][1].a2 = -16312;
-
-    bq[2][2].b1 = -6229;
-    bq[2][2].b2 = 3136;
-    bq[2][2].a1 = 32559;
-    bq[2][2].a2 = -16354;
-
-    bq[2][3].b1 = -16864;
-    bq[2][3].b2 = 8459;
-    bq[2][3].a1 = 32604;
-    bq[2][3].a2 = -16357;
-
-    //800-900-------------------------------------------------------------------
-    bq[3][0].b1 = -1181;
-    bq[3][0].b2 = 598;
-    bq[3][0].a1 = 32480;
-    bq[3][0].a2 = -16308;
-
-    bq[3][1].b1 = -5172;
-    bq[3][1].b2 = 2593;
-    bq[3][1].a1 = 32504;
-    bq[3][1].a2 = -16312;
-
-    bq[3][2].b1 = -6791;
-    bq[3][2].b2 = 3425;
-    bq[3][2].a1 = 32511;
-    bq[3][2].a2 = -16354;
-
-    bq[3][3].b1 = -15582;
-    bq[3][3].b2 = 7824;
-    bq[3][3].a1 = 32561;
-    bq[3][3].a2 = -16357;
-
-    //900-1000-------------------------------------------------------------------
-    bq[4][0].b1 = -1308;
-    bq[4][0].b2 = 665;
-    bq[4][0].a1 = 32429;
-    bq[4][0].a2 = -16308;
-
-    bq[4][1].b1 = -4563;
-    bq[4][1].b2 = 2289;
-    bq[4][1].a1 = 32455;
-    bq[4][1].a2 = -16312;
-
-    bq[4][2].b1 = -7059;
-    bq[4][2].b2 = 3567;
-    bq[4][2].a1 = 32458;
-    bq[4][2].a2 = -16354;
-
-    bq[4][3].b1 = -15128;
-    bq[4][3].b2 = 7606;
-    bq[4][3].a1 = 32514;
-    bq[4][3].a2 = -16357;
-
-
-    mips_iir16_setup(coeffs, bq[filterNumber], B);
-     */
-
-
 
 
     // Initialize audio codec.	
@@ -633,17 +508,30 @@ inline void ReadUSBData(void) {
     //PARSE THE DATA
     char* token = strtok(charArray, "\n");
     int i;
-    for (i = 0; i < fxDataCount; i++) {
+    for (i = 0; i < FX_MAX_PRESETS; i++) {
         fxData[i].fuzzIsOn = atoi(token);
         token = strtok(NULL, "\n");
         fxData[i].fuzzGain = atoi(token);
         token = strtok(NULL, "\n");
         fxData[i].fuzzMix = atoi(token);
         token = strtok(NULL, "\n");
+
         fxData[i].overdriveIsOn = atoi(token);
         token = strtok(NULL, "\n");
         fxData[i].overdriveTreshold = atoi(token);
         token = strtok(NULL, "\n");
+
+        fxData[i].wahIsOn = atoi(token);
+        token = strtok(NULL, "\n");
+        fxData[i].wahEffectRate = atoi(token);
+        token = strtok(NULL, "\n");
+        fxData[i].wahMinf = atoi(token);
+        token = strtok(NULL, "\n");
+        fxData[i].wahMaxf = atoi(token);
+        token = strtok(NULL, "\n");
+        fxData[i].wahQ = atoi(token);
+        token = strtok(NULL, "\n");
+
     }
 
     SetColor(WHITE);
@@ -695,19 +583,16 @@ void CreateScreenLoopback(void) {
 
     RedrawScreenLoopback();
 
-    AutoWah_init(2000, /*Effect rate 2000*/
-            24000, /*Sampling Frequency*/
-            1000, /*Maximum frequency*/
-            300, /*Minimum frequency*/
-            5, /*Q*/
-            0.707, /*Gain factor*/
-            10 /*Frequency increment*/
-            );
-
     ResetCodec(SAMPLE_RATE_48000_HZ, LINEIN);
 }
 
 void RedrawScreenLoopback(void) {
+    //init overdrive here
+    tresholdTimesThree = fxCurrentData->overdriveTreshold * 3;
+    //init autowah here
+    AutoWah_init(fxCurrentData->wahEffectRate, 24000, fxCurrentData->wahMaxf, fxCurrentData->wahMinf, fxCurrentData->wahQ, 0.707, 10);
+
+
     char print[30];
 
     SetFont((void *) &Font25);
@@ -730,38 +615,65 @@ void RedrawScreenLoopback(void) {
     SetColor(BLACK);
     SHORT topOffset = GetTextHeight((void*) &Font25);
     SHORT textOffset = GetTextHeight((void*) &GOLSmallFont);
+    SHORT blockOffset = 45;
     //FUZZ
-    OutTextXY(5, topOffset, "FUZZ ");
+
     if (fxCurrentData->fuzzIsOn == 1) {
         SetColor(BRIGHTGREEN);
-        OutText("ON");
+        OutTextXY(5, topOffset, "FZ");
     } else {
         SetColor(BRIGHTRED);
-        OutText("OFF");
+        OutTextXY(5, topOffset, "FZ");
     }
     SetColor(BLACK);
 
-    OutTextXY(5, topOffset + textOffset, "Gain: ");
+    OutTextXY(5, topOffset + textOffset, "G: ");
     sprintf(print, "%i", fxCurrentData->fuzzGain);
     OutText(print);
 
-    OutTextXY(5, topOffset + textOffset * 2, "Mix: ");
+    OutTextXY(5, topOffset + textOffset * 2, "M: ");
     sprintf(print, "%i", fxCurrentData->fuzzMix);
     OutText(print);
 
     //OVERDRIVE
-    OutTextXY(5 + 60, topOffset, "OVERDRIVE ");
+
     if (fxCurrentData->overdriveIsOn == 1) {
         SetColor(BRIGHTGREEN);
-        OutText("ON");
+        OutTextXY(5 + blockOffset, topOffset, "OD");
     } else {
         SetColor(BRIGHTRED);
-        OutText("OFF");
+        OutTextXY(5 + blockOffset, topOffset, "OD");
     }
     SetColor(BLACK);
 
-    OutTextXY(5 + 60, topOffset + textOffset, "Treshold: ");
+    OutTextXY(5 + blockOffset, topOffset + textOffset, "T: ");
     sprintf(print, "%i", fxCurrentData->overdriveTreshold);
+    OutText(print);
+
+    //AUTO-WAH
+    if (fxCurrentData->wahIsOn == 1) {
+        SetColor(BRIGHTGREEN);
+        OutTextXY(5 + blockOffset * 2, topOffset, "WAH");
+    } else {
+        SetColor(BRIGHTRED);
+        OutTextXY(5 + blockOffset * 2, topOffset, "WAH");
+    }
+    SetColor(BLACK);
+
+    OutTextXY(5 + blockOffset * 2, topOffset + textOffset, "R: ");
+    sprintf(print, "%i", fxCurrentData->wahEffectRate);
+    OutText(print);
+
+    OutTextXY(5 + blockOffset * 2, topOffset + textOffset * 2, "m: ");
+    sprintf(print, "%i", fxCurrentData->wahMinf);
+    OutText(print);
+
+    OutTextXY(5 + blockOffset * 2, topOffset + textOffset * 3, "M: ");
+    sprintf(print, "%i", fxCurrentData->wahMaxf);
+    OutText(print);
+
+    OutTextXY(5 + blockOffset * 2, topOffset + textOffset * 4, "Q: ");
+    sprintf(print, "%i", fxCurrentData->wahQ);
     OutText(print);
 }
 
@@ -785,9 +697,6 @@ void RedrawScreenLoopback(void) {
   Remarks:
     None.
  ***************************************************************************/
-
-#define DEBOUNCE_TIME   (100 * (TICKS_PER_SECOND / 1000ull))
-
 void CheckButtons(GOL_MSG *message) {
     message->uiEvent = EVENT_INVALID;
     message->type = TYPE_KEYBOARD;
@@ -1014,59 +923,26 @@ void uitoa2(WORD Value, BYTE* Buffer) {
 inline void AudioLoopback(void) {
     WM8960CodecRead(pCodecHandle, Sin, FRAME_SIZE);
     PORTSetBits(IOPORT_D, BIT_0);
-    //OVERDRIVE
-    tresholdTimesThree = fxCurrentData->overdriveTreshold * 3;
-
-    INT16 old;
-
-    if (fxCurrentData->fuzzIsOn == 1) {
-        int j;
-        for (j = 0; j < FRAME_SIZE; j++) {
-            //Sin[j].leftChannel = mips_iir16(Sin[j].leftChannel, coeffs, delayline, B, 1);
 
 
-            old = Sin[j].leftChannel;
-            Sin[j].leftChannel = AutoWah_process(old) * 10;
-            AutoWah_sweep(old);
-        }
-    }
-
-    /*
-    if (--bp_counter == 0) {
-        if (direction == 0) {
-            filterNumber++;
-            mips_iir16_setup(coeffs, bq[filterNumber], B);
-            if (filterNumber >= 4) {
-                direction = 1;
-            }
-        } else {
-            filterNumber--;
-            mips_iir16_setup(coeffs, bq[filterNumber], B);
-            if (filterNumber <= 0) {
-                direction = 0;
-            }
-        }
-        bp_counter = BP_COUNTER_MAX;
-        
-    }
-     */
 
 
-    /*
     int i;
-    for (i = 0; i < FRAME_SIZE; i++) {
+    for (i = 0; i < FRAME_SIZE; i++) {        
+        if (fxCurrentData->wahIsOn == 1) {
+            Sin[i].leftChannel = AutoWah_process(Sin[i].leftChannel) * 20;
+            AutoWah_sweep(Sin[i].leftChannel);
+        }
+
         if (fxCurrentData->overdriveIsOn == 1) {
             Overdrive(i);
         }
         if (fxCurrentData->fuzzIsOn == 1) {
             Fuzz(i);
         }
+        
     }
-     */
 
-
-
-    int i;
     for (i = 0; i < FRAME_SIZE; i++) {
         Sin[i].rightChannel = Sin[i].leftChannel;
     }
@@ -1075,15 +951,7 @@ inline void AudioLoopback(void) {
     PORTClearBits(IOPORT_D, BIT_0);
 }
 
-void BandPassFilter(void) {
-
-}
-
 void Fuzz(int i) {
-    //INT16 gain = 100; //gain - amount of distortion, gain>1
-    //INT16 mix = 20; //mix - mix of original and distorted sound, 1=only distorted mix>=1
-
-
     q = fxCurrentData->fuzzGain * Sin[i].leftChannel;
     if (q > 0) {
         z = (1 - exp(-abs(q / INT16_MAX))) * INT16_MAX;
@@ -1113,18 +981,6 @@ void Overdrive(int i) {
         }
     }
 }
-
-static short center_freq;
-static short samp_freq;
-static short counter;
-static short counter_limit;
-static short max_freq;
-static short min_freq;
-static short f_step;
-static struct bp_filter H;
-static double a[3];
-static double b[3];
-double x[3], y[3];
 
 /*
 This is the auto wah effect initialization function. 
@@ -1220,13 +1076,6 @@ void AutoWah_sweep(double xin) {
         counter = counter_limit;
     }
 }
-
-#define BP_MAX_COEFS 120
-#define PI 3.1415926
-
-/*This is an array of the filter parameters object
-defined in the br_iir.h file*/
-static struct bp_coeffs bp_coeff_arr[BP_MAX_COEFS];
 
 /*This initialization function will create the
 band pass filter coefficients array, you have to specify:

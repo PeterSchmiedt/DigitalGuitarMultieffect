@@ -51,7 +51,19 @@
 #include "./h/MDD File System/FSIO.h"
 #include <math.h>
 
+struct bp_coeffs{
+	double e;
+	double p;
+	double d[3];
+};
 
+struct bp_filter{
+	double e;
+	double p;
+	double d[3];
+	double x[3];
+	double y[3];
+};
 
 void InitializeHardware(void);
 void CheckButtons(GOL_MSG *message);
@@ -66,24 +78,8 @@ UINT16 GOLMsgCallback(UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg);
 void ResetCodec(unsigned int sample_rate, int audio_in);
 void uitoa2(WORD Value, BYTE* Buffer);
 
-void BandPassFilter(void);
-
 void Fuzz(int i);
 void Overdrive(int i);
-
-struct bp_coeffs{
-	double e;
-	double p;
-	double d[3];
-};
-
-struct bp_filter{
-	double e;
-	double p;
-	double d[3];
-	double x[3];
-	double y[3];
-};
 
 extern void bp_iir_init(double fsfilt,double gb,double Q,short fstep, short fmin);
 extern void bp_iir_setup(struct bp_filter * H,int index);
