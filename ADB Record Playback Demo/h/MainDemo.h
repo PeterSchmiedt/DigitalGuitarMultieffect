@@ -78,8 +78,13 @@ UINT16 GOLMsgCallback(UINT16 translatedMsg, OBJ_HEADER* pObj, GOL_MSG* pMsg);
 void ResetCodec(unsigned int sample_rate, int audio_in);
 void uitoa2(WORD Value, BYTE* Buffer);
 
+inline void Compressor();
 void Fuzz(int i);
 void Overdrive(int i);
+
+
+inline void EnvelopeInit();
+inline void Envelope(double xin);
 
 extern void bp_iir_init(double fsfilt,double gb,double Q,short fstep, short fmin);
 extern void bp_iir_setup(struct bp_filter * H,int index);
@@ -87,6 +92,6 @@ extern double bp_iir_filter(double yin,struct bp_filter * H);
 
 extern void AutoWah_init(short effect_rate,short sampling,short maxf,short minf,short Q,double gainfactor,short freq_step);
 extern double AutoWah_process(int xin);
-void AutoWah_sweep(double xin);
+void AutoWah_sweep();
 
 #endif // _MAINDEMO_H
