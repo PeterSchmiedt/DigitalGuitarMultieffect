@@ -19,6 +19,7 @@
 #pragma config ICESEL   = ICS_PGx2      // ICE/ICD Comm Channel Select
 #pragma config DEBUG    = ON            // Background Debugger Enable
 
+
 ////////Audio Codec Data Declaration////////
 #define 			FRAME_SIZE 1024
 WM8960_CODEC *pCodecHandle;
@@ -49,6 +50,12 @@ typedef struct {
     INT8 bitIsOn;
     INT8 bitsToKeep;
 
+    INT8 limitIsOn;
+    INT16 limitTreshold;
+
+    INT8 flangerIsOn;
+    INT16 flangerFrequency;
+
 } FX_DATA_STRUCT;
 
 #define             FX_MAX_PRESETS 10
@@ -69,9 +76,7 @@ INT16 current;
 
 //COMPRESSOR
 double compCoefficient = 0;
-double compRatio = 4;
-double compTreshold = 500;
-
+double compCoefficientMin = 1000;
 
 ////////Hanning Window Declaration for 1024 numbers////////
 //const float hanningWindow[FRAME_SIZE] = {0.00000, 0.00001, 0.00004, 0.00008, 0.00015, 0.00024, 0.00034, 0.00046, 0.00060, 0.00076, 0.00094, 0.00114, 0.00136, 0.00159, 0.00185, 0.00212, 0.00241, 0.00272, 0.00305, 0.00340, 0.00377, 0.00415, 0.00456, 0.00498, 0.00542, 0.00588, 0.00636, 0.00686, 0.00738, 0.00791, 0.00846, 0.00904, 0.00963, 0.01024, 0.01086, 0.01151, 0.01217, 0.01286, 0.01356, 0.01428, 0.01501, 0.01577, 0.01654, 0.01734, 0.01815, 0.01898, 0.01982, 0.02069, 0.02157, 0.02247, 0.02339, 0.02433, 0.02528, 0.02626, 0.02725, 0.02826, 0.02928, 0.03033, 0.03139, 0.03247, 0.03357, 0.03468, 0.03582, 0.03697, 0.03813, 0.03932, 0.04052, 0.04174, 0.04298, 0.04423, 0.04550, 0.04679, 0.04810, 0.04942, 0.05076, 0.05212, 0.05349, 0.05488, 0.05629, 0.05771, 0.05915, 0.06061, 0.06208, 0.06357, 0.06508, 0.06660, 0.06814, 0.06970, 0.07127, 0.07286, 0.07446, 0.07608, 0.07772, 0.07937, 0.08104, 0.08273, 0.08443, 0.08614, 0.08787, 0.08962, 0.09138, 0.09316, 0.09495, 0.09676, 0.09858, 0.10042, 0.10227, 0.10414, 0.10603, 0.10792, 0.10984, 0.11177, 0.11371, 0.11567, 0.11764, 0.11962, 0.12162, 0.12364, 0.12567, 0.12771, 0.12977, 0.13184, 0.13392, 0.13602, 0.13813, 0.14026, 0.14240, 0.14455, 0.14672, 0.14890, 0.15109, 0.15330, 0.15552, 0.15775, 0.15999, 0.16225, 0.16452, 0.16681, 0.16910, 0.17141, 0.17373, 0.17606, 0.17841, 0.18077, 0.18314, 0.18552, 0.18791, 0.19032, 0.19273, 0.19516, 0.19760, 0.20005, 0.20252, 0.20499, 0.20748, 0.20997, 0.21248, 0.21500, 0.21752, 0.22006, 0.22261, 0.22517, 0.22774, 0.23033, 0.23292, 0.23552, 0.23813, 0.24075, 0.24338, 0.24602, 0.24867, 0.25133, 0.25400, 0.25668, 0.25937, 0.26206, 0.26477, 0.26748, 0.27020, 0.27294, 0.27568, 0.27843, 0.28118, 0.28395, 0.28672, 0.28950, 0.29229, 0.29509, 0.29789, 0.30071, 0.30353, 0.30636, 0.30919, 0.31203, 0.31488, 0.31774, 0.32060, 0.32347, 0.32635, 0.32923, 0.33212, 0.33502, 0.33792, 0.34083, 0.34374, 0.34666, 0.34959, 0.35252, 0.35545, 0.35840, 0.36135, 0.36430, 0.36726, 0.37022, 0.37319, 0.37616, 0.37914, 0.38212, 0.38511, 0.38810, 0.39109, 0.39409, 0.39710, 0.40010, 0.40311, 0.40613, 0.40915, 0.41217, 0.41519, 0.41822, 0.42125, 0.42429, 0.42732, 0.43036, 0.43341, 0.43645, 0.43950, 0.44255, 0.44560, 0.44865, 0.45171, 0.45477, 0.45782, 0.46089, 0.46395, 0.46701, 0.47008, 0.47314, 0.47621, 0.47928, 0.48235, 0.48542, 0.48848, 0.49156, 0.49463, 0.49770, 0.50077, 0.50384, 0.50691, 0.50998, 0.51305, 0.51612, 0.51919, 0.52226, 0.52532, 0.52839, 0.53146, 0.53452, 0.53758, 0.54065, 0.54371, 0.54676, 0.54982, 0.55288, 0.55593, 0.55898, 0.56203, 0.56507, 0.56812, 0.57116, 0.57420, 0.57723, 0.58026, 0.58329, 0.58632, 0.58934, 0.59236, 0.59538, 0.59839, 0.60140, 0.60441, 0.60741, 0.61040, 0.61340, 0.61639, 0.61937, 0.62235, 0.62533, 0.62830, 0.63126, 0.63422, 0.63718, 0.64013, 0.64307, 0.64601, 0.64895, 0.65188, 0.65480, 0.65772, 0.66063, 0.66353, 0.66643, 0.66933, 0.67221, 0.67509, 0.67796, 0.68083, 0.68369, 0.68654, 0.68939, 0.69223, 0.69506, 0.69788, 0.70070, 0.70351, 0.70631, 0.70910, 0.71189, 0.71467, 0.71744, 0.72020, 0.72295, 0.72569, 0.72843, 0.73116, 0.73388, 0.73659, 0.73929, 0.74198, 0.74466, 0.74734, 0.75000, 0.75265, 0.75530, 0.75794, 0.76056, 0.76318, 0.76578, 0.76838, 0.77097, 0.77354, 0.77611, 0.77866, 0.78121, 0.78374, 0.78626, 0.78878, 0.79128, 0.79377, 0.79625, 0.79872, 0.80117, 0.80362, 0.80605, 0.80848, 0.81089, 0.81329, 0.81567, 0.81805, 0.82041, 0.82276, 0.82510, 0.82743, 0.82975, 0.83205, 0.83434, 0.83661, 0.83888, 0.84113, 0.84337, 0.84559, 0.84781, 0.85001, 0.85219, 0.85437, 0.85653, 0.85867, 0.86081, 0.86292, 0.86503, 0.86712, 0.86920, 0.87126, 0.87331, 0.87535, 0.87737, 0.87938, 0.88137, 0.88335, 0.88532, 0.88727, 0.88920, 0.89112, 0.89303, 0.89492, 0.89679, 0.89865, 0.90050, 0.90233, 0.90415, 0.90595, 0.90773, 0.90950, 0.91126, 0.91300, 0.91472, 0.91643, 0.91812, 0.91979, 0.92145, 0.92310, 0.92473, 0.92634, 0.92794, 0.92952, 0.93108, 0.93263, 0.93416, 0.93567, 0.93717, 0.93866, 0.94012, 0.94157, 0.94300, 0.94442, 0.94582, 0.94720, 0.94856, 0.94991, 0.95124, 0.95256, 0.95385, 0.95513, 0.95640, 0.95764, 0.95887, 0.96008, 0.96128, 0.96245, 0.96361, 0.96475, 0.96588, 0.96698, 0.96807, 0.96914, 0.97020, 0.97123, 0.97225, 0.97325, 0.97423, 0.97520, 0.97614, 0.97707, 0.97798, 0.97887, 0.97975, 0.98060, 0.98144, 0.98226, 0.98306, 0.98385, 0.98461, 0.98536, 0.98609, 0.98680, 0.98749, 0.98816, 0.98882, 0.98945, 0.99007, 0.99067, 0.99125, 0.99182, 0.99236, 0.99288, 0.99339, 0.99388, 0.99435, 0.99480, 0.99523, 0.99565, 0.99604, 0.99642, 0.99678, 0.99711, 0.99743, 0.99774, 0.99802, 0.99828, 0.99853, 0.99875, 0.99896, 0.99915, 0.99932, 0.99947, 0.99960, 0.99971, 0.99981, 0.99988, 0.99994, 0.99998, 1.00000, 1.00000, 0.99998, 0.99994, 0.99988, 0.99981, 0.99971, 0.99960, 0.99947, 0.99932, 0.99915, 0.99896, 0.99875, 0.99853, 0.99828, 0.99802, 0.99774, 0.99743, 0.99711, 0.99678, 0.99642, 0.99604, 0.99565, 0.99523, 0.99480, 0.99435, 0.99388, 0.99339, 0.99288, 0.99236, 0.99182, 0.99125, 0.99067, 0.99007, 0.98945, 0.98882, 0.98816, 0.98749, 0.98680, 0.98609, 0.98536, 0.98461, 0.98385, 0.98306, 0.98226, 0.98144, 0.98060, 0.97975, 0.97887, 0.97798, 0.97707, 0.97614, 0.97520, 0.97423, 0.97325, 0.97225, 0.97123, 0.97020, 0.96914, 0.96807, 0.96698, 0.96588, 0.96475, 0.96361, 0.96245, 0.96128, 0.96008, 0.95887, 0.95764, 0.95640, 0.95513, 0.95385, 0.95256, 0.95124, 0.94991, 0.94856, 0.94720, 0.94582, 0.94442, 0.94300, 0.94157, 0.94012, 0.93866, 0.93717, 0.93567, 0.93416, 0.93263, 0.93108, 0.92952, 0.92794, 0.92634, 0.92473, 0.92310, 0.92145, 0.91979, 0.91812, 0.91643, 0.91472, 0.91300, 0.91126, 0.90950, 0.90773, 0.90595, 0.90415, 0.90233, 0.90050, 0.89865, 0.89679, 0.89492, 0.89303, 0.89112, 0.88920, 0.88727, 0.88532, 0.88335, 0.88137, 0.87938, 0.87737, 0.87535, 0.87331, 0.87126, 0.86920, 0.86712, 0.86503, 0.86292, 0.86081, 0.85867, 0.85653, 0.85437, 0.85219, 0.85001, 0.84781, 0.84559, 0.84337, 0.84113, 0.83888, 0.83661, 0.83434, 0.83205, 0.82975, 0.82743, 0.82510, 0.82276, 0.82041, 0.81805, 0.81567, 0.81329, 0.81089, 0.80848, 0.80605, 0.80362, 0.80117, 0.79872, 0.79625, 0.79377, 0.79128, 0.78878, 0.78626, 0.78374, 0.78121, 0.77866, 0.77611, 0.77354, 0.77097, 0.76838, 0.76578, 0.76318, 0.76056, 0.75794, 0.75530, 0.75265, 0.75000, 0.74734, 0.74466, 0.74198, 0.73929, 0.73659, 0.73388, 0.73116, 0.72843, 0.72569, 0.72295, 0.72020, 0.71744, 0.71467, 0.71189, 0.70910, 0.70631, 0.70351, 0.70070, 0.69788, 0.69506, 0.69223, 0.68939, 0.68654, 0.68369, 0.68083, 0.67796, 0.67509, 0.67221, 0.66933, 0.66643, 0.66353, 0.66063, 0.65772, 0.65480, 0.65188, 0.64895, 0.64601, 0.64307, 0.64013, 0.63718, 0.63422, 0.63126, 0.62830, 0.62533, 0.62235, 0.61937, 0.61639, 0.61340, 0.61040, 0.60741, 0.60441, 0.60140, 0.59839, 0.59538, 0.59236, 0.58934, 0.58632, 0.58329, 0.58026, 0.57723, 0.57420, 0.57116, 0.56812, 0.56507, 0.56203, 0.55898, 0.55593, 0.55288, 0.54982, 0.54676, 0.54371, 0.54065, 0.53758, 0.53452, 0.53146, 0.52839, 0.52532, 0.52226, 0.51919, 0.51612, 0.51305, 0.50998, 0.50691, 0.50384, 0.50077, 0.49770, 0.49463, 0.49156, 0.48848, 0.48542, 0.48235, 0.47928, 0.47621, 0.47314, 0.47008, 0.46701, 0.46395, 0.46089, 0.45782, 0.45477, 0.45171, 0.44865, 0.44560, 0.44255, 0.43950, 0.43645, 0.43341, 0.43036, 0.42732, 0.42429, 0.42125, 0.41822, 0.41519, 0.41217, 0.40915, 0.40613, 0.40311, 0.40010, 0.39710, 0.39409, 0.39109, 0.38810, 0.38511, 0.38212, 0.37914, 0.37616, 0.37319, 0.37022, 0.36726, 0.36430, 0.36135, 0.35840, 0.35545, 0.35252, 0.34959, 0.34666, 0.34374, 0.34083, 0.33792, 0.33502, 0.33212, 0.32923, 0.32635, 0.32347, 0.32060, 0.31774, 0.31488, 0.31203, 0.30919, 0.30636, 0.30353, 0.30071, 0.29789, 0.29509, 0.29229, 0.28950, 0.28672, 0.28395, 0.28118, 0.27843, 0.27568, 0.27294, 0.27020, 0.26748, 0.26477, 0.26206, 0.25937, 0.25668, 0.25400, 0.25133, 0.24867, 0.24602, 0.24338, 0.24075, 0.23813, 0.23552, 0.23292, 0.23033, 0.22774, 0.22517, 0.22261, 0.22006, 0.21752, 0.21500, 0.21248, 0.20997, 0.20748, 0.20499, 0.20252, 0.20005, 0.19760, 0.19516, 0.19273, 0.19032, 0.18791, 0.18552, 0.18314, 0.18077, 0.17841, 0.17606, 0.17373, 0.17141, 0.16910, 0.16681, 0.16452, 0.16225, 0.15999, 0.15775, 0.15552, 0.15330, 0.15109, 0.14890, 0.14672, 0.14455, 0.14240, 0.14026, 0.13813, 0.13602, 0.13392, 0.13184, 0.12977, 0.12771, 0.12567, 0.12364, 0.12162, 0.11962, 0.11764, 0.11567, 0.11371, 0.11177, 0.10984, 0.10792, 0.10603, 0.10414, 0.10227, 0.10042, 0.09858, 0.09676, 0.09495, 0.09316, 0.09138, 0.08962, 0.08787, 0.08614, 0.08443, 0.08273, 0.08104, 0.07937, 0.07772, 0.07608, 0.07446, 0.07286, 0.07127, 0.06970, 0.06814, 0.06660, 0.06508, 0.06357, 0.06208, 0.06061, 0.05915, 0.05771, 0.05629, 0.05488, 0.05349, 0.05212, 0.05076, 0.04942, 0.04810, 0.04679, 0.04550, 0.04423, 0.04298, 0.04174, 0.04052, 0.03932, 0.03813, 0.03697, 0.03582, 0.03468, 0.03357, 0.03247, 0.03139, 0.03033, 0.02928, 0.02826, 0.02725, 0.02626, 0.02528, 0.02433, 0.02339, 0.02247, 0.02157, 0.02069, 0.01982, 0.01898, 0.01815, 0.01734, 0.01654, 0.01577, 0.01501, 0.01428, 0.01356, 0.01286, 0.01217, 0.01151, 0.01086, 0.01024, 0.00963, 0.00904, 0.00846, 0.00791, 0.00738, 0.00686, 0.00636, 0.00588, 0.00542, 0.00498, 0.00456, 0.00415, 0.00377, 0.00340, 0.00305, 0.00272, 0.00241, 0.00212, 0.00185, 0.00159, 0.00136, 0.00114, 0.00094, 0.00076, 0.00060, 0.00046, 0.00034, 0.00024, 0.00015, 0.00008, 0.00004, 0.00001, 0.00000};
@@ -97,67 +102,58 @@ short counter_limit;
 short max_freq;
 short min_freq;
 short f_step;
-struct bp_filter H;
+struct filter filter_struct;
 double a[3];
 double b[3];
 double x[3];
 double y[3];
 
 
-static struct bp_coeffs bp_coeff_arr[BP_MAX_COEFS];
+static struct bpcoefficients bandPassCoefficients[BP_MAX_COEFS];
+
+//Delay
+#define FLANGER_ONE_MILISECOND_SIZE 48
+#define FLANGER_COUNTER_MAX 3360
+INT16* flangerDelayArray;
+INT32 flanger_samples_to_keep;
+INT32 flanger_current_sample_no;
+INT16 flanger_delay_time_ms;
+INT32 flanger_counter;
+INT16 flanger_direction = 1;
 
 
-////////Graphics Data Declaration////////
+
+//STATE OF THE DEVICE
 
 typedef enum {
     STATE_DISPLAY_SHOW_LOOPBACK,
     STATE_SHOW_CLEAR_LOOPBACK,
     STATE_SHOW_LOOPBACK,
-
     STATE_DISPLAY_SHOW_USB,
     STATE_SHOW_CLEAR_USB,
     STATE_SHOW_INSERT_USB,
     STATE_SHOW_USB,
     STATE_SHOW_USB_DONE
-} STATES_GRAPHICS;
+} STATES;
 
-#define 			ADJUST_PIXELS 10
 #define DEBOUNCE_TIME   (100 * (TICKS_PER_SECOND / 1000ull))
 
-GOL_SCHEME *altScheme;
 GOL_MSG graphicsMessage;
-STATES_GRAPHICS stateScreen;
-STATES_GRAPHICS stateScreen = STATE_DISPLAY_SHOW_LOOPBACK;
-SLIDER *volADCIndication;
-SLIDER *volDACIndication;
-BUTTON *record;
-BUTTON *playback;
-BUTTON *loopback;
-BUTTON *settings;
-BOOL playbackFlag;
-BOOL playFlag = TRUE;
+STATES stateScreen = STATE_DISPLAY_SHOW_LOOPBACK;
 BOOL muteFlag = TRUE;
 BOOL buttonsFlag = FALSE;
-BOOL recordFlag = FALSE;
-BOOL playbackFlag = TRUE;
 UINT32 tickStart;
-UINT16 secCount = 0;
-UINT8 volADC = 100; //USED
-UINT8 volDAC = 100; //USED
-UINT8 tabSetting = 1;
-UINT8 audioIn = LINEIN; //USED
-BYTE countDemo = 1;
-BYTE countSetting = 2;
+UINT8 volADC = 100;
+UINT8 volDAC = 100;
+UINT8 audioIn = LINEIN;
 WM8960_SAMPLE_RATE currentSampleRate = SAMPLE_RATE_48000_HZ;
 extern const FONT_FLASH Font25;
 extern const FONT_FLASH GOLSmallFont;
 extern const FONT_FLASH GOLMediumFont;
 
-/*****************************************************************************
- ******************************************************************************
- Main
- ******************************************************************************
- *****************************************************************************/
+/*
+ * MAIN
+ */
 int main(void) {
 
     // Initialize hardware.
@@ -178,28 +174,10 @@ int main(void) {
 
 }
 
-/****************************************************************************
-  Function:
-    UINT16 GOLDrawCallback( void )
-
-  Description:
-    This callback is performed at the beginning of the GOLDraw() function.
-    Processing that needs to be done on a regular basis and is not triggered
-    by a message should be done here.
-
-  Precondition:
-    None
-
-  Parameters:
-    None
-
-  Returns:
-    None
-
-  Remarks:
-    All graphic control adding and removing must be done from this function,
-    not from the message callback.
- ***************************************************************************/
+/**
+ * GOLDrawCallback, calls right before the function GOLDraw()
+ * @return 
+ */
 UINT16 GOLDrawCallback(void) {
     switch (stateScreen) {
         case STATE_DISPLAY_SHOW_LOOPBACK:
@@ -374,26 +352,9 @@ BOOL USB_ApplicationEventHandler(BYTE address, USB_EVENT event, void *data, DWOR
     return FALSE;
 }
 
-/****************************************************************************
-  Function:
-     void InitializeHardware( void )
-
-  Description:
-    This function initializes board hardware.
-
-  Precondition:
-    None
-
-  Parameters:
-    None
-
-  Returns:
-    None
-
-  Remarks:
-    None.
- ***************************************************************************/
-
+/**
+ * INIT HW
+ */
 void InitializeHardware(void) {
     // Initialize and configure clock for PIC32.
     INTEnableSystemMultiVectoredInt();
@@ -435,39 +396,30 @@ void InitializeHardware(void) {
     fxData[0].compIsOn = FALSE;
     fxData[0].compRatio = 4;
     fxData[0].compTreshold = 2000;
+    fxData[0].limitIsOn = FALSE;
+    fxData[0].limitTreshold = 2000;
+    fxData[0].flangerIsOn = FALSE;
+    fxData[0].flangerFrequency = 1;
 
 
     //point to the current preset
     fxCurrentData = &fxData[0];
 
 
-    // Initialize audio codec.	
+    //Audio
     pCodecHandle = WM8960CodecOpen(O_RDWR);
     WM8960CodecStartAudio(pCodecHandle, TRUE);
     WM8960CodecConfigVolume(pCodecHandle, 0, 0);
     ResetCodec(SAMPLE_RATE_48000_HZ, LINEIN);
     WM8960CodecConfigVolume(pCodecHandle, volADC, volDAC);
 
-    // Graphics init.
+    // Graphics.
     InitGraph();
 
-    // Start the general timer.
+    // TIMER ON
     TickInit();
 
-    // Initialize graphics scheme used.
-    altScheme = GOLCreateScheme();
-    altScheme->Color0 = RGB565CONVERT(0x4C, 0x8E, 0xFF);
-    altScheme->Color1 = BLACK;
-    altScheme->EmbossDkColor = RGB565CONVERT(0x1E, 0x00, 0xE5);
-    altScheme->EmbossLtColor = RGB565CONVERT(0xA9, 0xDB, 0xEF);
-    altScheme->ColorDisabled = RGB565CONVERT(0xD4, 0xE1, 0xF7);
-    altScheme->TextColor1 = BRIGHTBLUE;
-    altScheme->TextColor0 = RGB565CONVERT(255, 102, 0);
-    altScheme->TextColorDisabled = RGB565CONVERT(0xB8, 0xB9, 0xBC);
-    altScheme->CommonBkColor = BLACK;
-    altScheme->pFont = (void *) &Font25;
-
-    // Initialize the USB stack
+    // Initialize the USB
     USBInitialize(0);
 
     // Start-up splash.
@@ -477,19 +429,20 @@ void InitializeHardware(void) {
     ClearDevice();
 
 
-    //WAIT_UNTIL_FINISH(PutImage(0, 5, (void *) &icon_pic32, IMAGE_NORMAL));
 
-
-
+    SetColor(BLUE);
+    SetFont((void *) &GOLMediumFont);
+    OutTextXY((GetMaxX() - GetTextWidth("Ceske Vysoke Uceni Technick", (void *) &GOLMediumFont)) / 2, 10, "Ceske Vysoke Uceni Technicke");
+    OutTextXY((GetMaxX() - GetTextWidth("v Praze", (void *) &GOLMediumFont)) / 2, 10 + GetTextHeight((void *) &GOLMediumFont), "v Praze");
+    OutTextXY((GetMaxX() - GetTextWidth("Fakulta Elektrotechnicka", (void *) &GOLMediumFont)) / 2, 10 + 2 * GetTextHeight((void *) &GOLMediumFont), "Fakulta Elektrotechnicka");
 
     SetColor(BRIGHTGREEN);
     SetFont((void *) &Font25);
-    OutTextXY(70, 65, "DIGITAL");
-    OutTextXY(5, 65 + GetTextHeight((void *) &Font25) - 5, "  GUITAR MULTIEFFECT");
+    OutTextXY((GetMaxX() - GetTextWidth("Prototyp Kytaroveho", (void *) &Font25)) / 2, 110, "Prototyp Kytaroveho");
+    OutTextXY((GetMaxX() - GetTextWidth("Multiefektu", (void *) &Font25)) / 2, 110 + GetTextHeight((void *) &Font25) - 5, "Multiefektu");
     SetColor(GREEN);
     SetFont((void *) &GOLMediumFont);
-    OutTextXY(65, 65 + 2 * GetTextHeight((void *) &Font25) - 10, "Peter Schmiedt");
-    //WAIT_UNTIL_FINISH(PutImage(30, 65 + 3*GetTextHeight( (void *)&GOLMediumFont ), (void *) &icon_intro, IMAGE_NORMAL));
+    OutTextXY((GetMaxX() - GetTextWidth("Peter Schmiedt", (void *) &GOLMediumFont)) / 2, 110 + 2 * GetTextHeight((void *) &Font25) - 10, "Peter Schmiedt");
     DelayMs(3000);
 
     BUTTON_VOLUME_UP_TRIS = 1;
@@ -499,21 +452,25 @@ void InitializeHardware(void) {
 
 }
 
+/**
+ * Create screen USB
+ */
 void CreateScreenUSB(void) {
     GOLFree();
     SetColor(WHITE);
     ClearDevice();
-
-    PutImage(80, GetMaxY() - 30, (void*) &icon_tback, 1);
-
     SetFont((void *) &Font25);
     SetColor(BLACK);
+    OutTextXY(90, GetMaxY() - 25, "FX");
     OutTextXY(GetMaxX() / 2 - (GetTextWidth("USB Device", (void *) &Font25) / 2), 50, "USB Device");
     OutTextXY(GetMaxX() / 2 - GetTextWidth("Insert USB device...", (void *) &Font25) / 2, 50 + GetTextHeight((void *) &Font25), "Insert USB device...");
 
     SetColor(WHITE);
 }
 
+/**
+ * Read and process the data
+ */
 inline void ReadUSBData(void) {
     PORTSetBits(IOPORT_C, BIT_13);
 
@@ -565,7 +522,15 @@ inline void ReadUSBData(void) {
         fxData[i].compTreshold = atoi(token);
         token = strtok(NULL, "\n");
 
+        fxData[i].limitIsOn = atoi(token);
+        token = strtok(NULL, "\n");
+        fxData[i].limitTreshold = atoi(token);
+        token = strtok(NULL, "\n");
 
+        fxData[i].flangerIsOn = atoi(token);
+        token = strtok(NULL, "\n");
+        fxData[i].flangerFrequency = atoi(token);
+        token = strtok(NULL, "\n");
 
         token = strtok(NULL, "\n");
 
@@ -577,6 +542,9 @@ inline void ReadUSBData(void) {
     PORTClearBits(IOPORT_C, BIT_13);
 }
 
+/**
+ * USB DONE
+ */
 inline void ReadUSBDataDone(void) {
     PORTSetBits(IOPORT_C, BIT_13);
 
@@ -587,35 +555,20 @@ inline void ReadUSBDataDone(void) {
     PORTClearBits(IOPORT_C, BIT_13);
 }
 
-/****************************************************************************
-  Function:
-     void CreateScreenLoopback( void )
-
-  Description:
-    This function creates loopback demo screen.
-
-  Precondition:
-    None
-
-  Parameters:
-    None
-
-  Returns:
-    None
-
-  Remarks:
-    None.
- ***************************************************************************/
-
+/**
+ * Create screen loopback
+ */
 void CreateScreenLoopback(void) {
     GOLFree();
     SetColor(WHITE);
     ClearDevice();
-    //PutImage(5, 5, (void*) &icon_tloopback, 1);
-    PutImage(80, GetMaxY() - 30, (void*) &icon_tback, 1);
+
     PutImage(160, GetMaxY() - 30, (void*) &icon_tunmute, 1);
+
+
     SetFont((void *) &Font25);
     SetColor(BLACK);
+    OutTextXY(80, GetMaxY() - 25, "USB");
     OutTextXY(5, 0, "Preset: ");
 
     RedrawScreenLoopback();
@@ -623,6 +576,9 @@ void CreateScreenLoopback(void) {
     ResetCodec(SAMPLE_RATE_48000_HZ, LINEIN);
 }
 
+/**
+ * Redraw the main display and init the filters
+ */
 void RedrawScreenLoopback(void) {
     //init overdrive here
     tresholdTimesThree = fxCurrentData->overdriveTreshold * 3;
@@ -631,6 +587,9 @@ void RedrawScreenLoopback(void) {
 
     //Init the compressor LPF for envelope smoothing
     EnvelopeInit();
+
+    //initialize the delay
+    FlangerInit();
 
 
     char print[30];
@@ -656,7 +615,7 @@ void RedrawScreenLoopback(void) {
     SHORT topOffset = GetTextHeight((void*) &Font25);
     SHORT textOffset = GetTextHeight((void*) &GOLSmallFont);
     SHORT blockOffset = 45;
-    //FUZZ
+    //FUZZ--------------------------------------------------------------------
 
     if (fxCurrentData->fuzzIsOn == 1) {
         SetColor(BRIGHTGREEN);
@@ -675,7 +634,21 @@ void RedrawScreenLoopback(void) {
     sprintf(print, "%i", fxCurrentData->fuzzMix);
     OutText(print);
 
-    //OVERDRIVE
+    //LIMITER--------------------------------------------------------------------
+    if (fxCurrentData->limitIsOn == 1) {
+        SetColor(BRIGHTGREEN);
+        OutTextXY(5, topOffset + 3 * textOffset, "LIM");
+    } else {
+        SetColor(BRIGHTRED);
+        OutTextXY(5, topOffset + 3 * textOffset, "LIM");
+    }
+    SetColor(BLACK);
+
+    OutTextXY(5, topOffset + 4 * textOffset, "T: ");
+    sprintf(print, "%i", fxCurrentData->limitTreshold);
+    OutText(print);
+
+    //OVERDRIVE--------------------------------------------------------------------
 
     if (fxCurrentData->overdriveIsOn == 1) {
         SetColor(BRIGHTGREEN);
@@ -690,7 +663,22 @@ void RedrawScreenLoopback(void) {
     sprintf(print, "%i", fxCurrentData->overdriveTreshold);
     OutText(print);
 
-    //AUTO-WAH
+    //DELAY--------------------------------------------------------------------
+
+    if (fxCurrentData->flangerIsOn == 1) {
+        SetColor(BRIGHTGREEN);
+        OutTextXY(5 + blockOffset, 2 * textOffset + topOffset, "DLY");
+    } else {
+        SetColor(BRIGHTRED);
+        OutTextXY(5 + blockOffset, 2 * textOffset + topOffset, "DLY");
+    }
+    SetColor(BLACK);
+
+    OutTextXY(5 + blockOffset, topOffset + textOffset * 3, "T: ");
+    sprintf(print, "%i", fxCurrentData->flangerFrequency);
+    OutText(print);
+
+    //AUTO-WAH--------------------------------------------------------------------
     if (fxCurrentData->wahIsOn == 1) {
         SetColor(BRIGHTGREEN);
         OutTextXY(5 + blockOffset * 2, topOffset, "WAH");
@@ -716,7 +704,7 @@ void RedrawScreenLoopback(void) {
     sprintf(print, "%i", fxCurrentData->wahQ);
     OutText(print);
 
-    //BitCrush
+    //BitCrush--------------------------------------------------------------------
     if (fxCurrentData->bitIsOn == 1) {
         SetColor(BRIGHTGREEN);
         OutTextXY(5 + blockOffset * 3, topOffset, "BC");
@@ -730,7 +718,7 @@ void RedrawScreenLoopback(void) {
     sprintf(print, "%i", fxCurrentData->bitsToKeep);
     OutText(print);
 
-    //Compressor
+    //Compressor--------------------------------------------------------------------
     if (fxCurrentData->compIsOn == 1) {
         SetColor(BRIGHTGREEN);
         OutTextXY(5 + blockOffset * 3, topOffset + textOffset * 2, "CP");
@@ -750,31 +738,9 @@ void RedrawScreenLoopback(void) {
     OutText(":1");
 }
 
-/****************************************************************************
-  Function:
-     inline void CheckButtons( GOL_MSG *message );
-
-  Description:
-    This function checks user buttons for press and takes appropriate 
-    action based.
-
-  Precondition:
-    None
-
-  Parameters:
-    None
-
-  Returns:
-    None
-
-  Remarks:
-    None.
- ***************************************************************************/
 void CheckButtons(GOL_MSG *message) {
-    message->uiEvent = EVENT_INVALID;
-    message->type = TYPE_KEYBOARD;
 
-    // Process BUTTON_VOLUME_DOWN(S2) presses, including debouncing
+    //BUTTON_VOLUME_DOWN(S2)
     {
         static BOOL switchBouncing = TRUE;
         static UINT32 switchTime = 0;
@@ -806,7 +772,7 @@ void CheckButtons(GOL_MSG *message) {
         }
     }
 
-    // Process BUTTON_VOLUME_UP(S3) presses, including debouncing
+    //BUTTON_VOLUME_UP
     {
         static BOOL switchBouncing = TRUE;
         static UINT32 switchTime = 0;
@@ -838,7 +804,7 @@ void CheckButtons(GOL_MSG *message) {
         }
     }
 
-    // Process BUTTON_NEXT(S4) presses, including debouncing
+    //BUTTON_NEXT
     {
         UINT8 *pCommandData;
         static BOOL switchBouncing = TRUE;
@@ -870,7 +836,7 @@ void CheckButtons(GOL_MSG *message) {
         }
     }
 
-    // Process BUTTON_PREVIOUS(S4) presses, including debouncing
+    //BUTTON_PREVIOUS
     {
         UINT8 *pCommandData;
         static BOOL switchBouncing = TRUE;
@@ -888,7 +854,7 @@ void CheckButtons(GOL_MSG *message) {
                 case STATE_SHOW_LOOPBACK:
                     muteFlag = FALSE;
                     stateScreen = STATE_DISPLAY_SHOW_USB;
-                    ResetCodec((countDemo == 1) ? 4 : countDemo - 1, audioIn);
+                    ResetCodec();
                     break;
 
                 case STATE_SHOW_USB:
@@ -915,93 +881,38 @@ void CheckButtons(GOL_MSG *message) {
 
 }
 
-/****************************************************************************
-  Function:
-     void ResetCodec(unsigned int sample_rate, int audioIn);
-
-  Description:
-    This function resets with a sampling rate and audio in choice.
-
-  Precondition:
-    None
-
-  Parameters:
-    sampleRate - Audio sampling rate of the codec.
-    audioIn - Line-in or MIC audio in
-
-  Returns:
-    None
-
-  Remarks:
-    None.
- ***************************************************************************/
-
-void ResetCodec(unsigned int sampleRate, int audioIn) {
-    currentSampleRate = sampleRate;
+/**
+ * RESET CODEC
+ */
+void ResetCodec() {
     WM8960CodecClear(pCodecHandle);
-    if (sampleRate != SAMPLE_RATE_NO_CHANGE)
-        WM8960CodecConfigSampleRate(pCodecHandle, sampleRate);
+    if (currentSampleRate != SAMPLE_RATE_NO_CHANGE)
+        WM8960CodecConfigSampleRate(pCodecHandle, currentSampleRate);
 
     DelayMs(10);
-    if (audioIn == LINEIN) {
-        WM8960CodecEnableMicrophone(pCodecHandle, FALSE);
-        WM8960CodecEnableLineIn(pCodecHandle, TRUE);
-    } else if (audioIn == MICROPHONE) {
-        WM8960CodecEnableLineIn(pCodecHandle, FALSE);
-        WM8960CodecEnableMicrophone(pCodecHandle, TRUE);
-    }
+
+    WM8960CodecEnableMicrophone(pCodecHandle, FALSE);
+    WM8960CodecEnableLineIn(pCodecHandle, TRUE);
+
 }
 
-void uitoa2(WORD Value, BYTE* Buffer) {
-    BYTE i;
-    WORD Digit;
-    WORD Divisor;
-    BOOL Printed = FALSE;
-    if (Value) {
-        for (i = 0, Divisor = 10000; i < 5u; i++) {
-            Digit = Value / Divisor;
-            if (Digit || Printed) {
-                *Buffer++ = '0' + Digit;
-                Value -= Digit*Divisor;
-                Printed = TRUE;
-            }
-            Divisor /= 10;
-        }
-    } else {
-        *Buffer++ = '0';
-    }
-    *Buffer = '\0';
-}
-
-/****************************************************************************
-  Function:
-     void AudioLoopback(void);
-
-  Description:
-    This function captures and plays back audio.
-
-  Precondition:
-    None
-
-  Parameters:
-    None
-
-  Returns:
-    None
-
-  Remarks:
-    None.
- ***************************************************************************/
-
+/**
+ * MAIN AUDIO LOOP
+ */
 inline void AudioLoopback(void) {
     WM8960CodecRead(pCodecHandle, Sin, FRAME_SIZE);
     PORTSetBits(IOPORT_D, BIT_0);
 
-
+    compCoefficientMin = 1000;
 
     int i;
     for (i = 0; i < FRAME_SIZE; i++) {
 
+        if (fxCurrentData->limitIsOn == 1) {
+            Limiter(i);
+        }
+
+        Envelope(Sin[i].leftChannel);
 
         if (fxCurrentData->wahIsOn == 1) {
             Sin[i].leftChannel = AutoWah_process(Sin[i].leftChannel) * 20;
@@ -1019,7 +930,11 @@ inline void AudioLoopback(void) {
             BitCrusher(i);
         }
 
-        Envelope(Sin[i].leftChannel);
+        if (fxCurrentData->flangerIsOn == 1) {
+            FlangerProcess(i);
+            FlangerSweep();
+        }
+
 
         if (fxCurrentData->compIsOn == 1) {
             Compressor(i);
@@ -1036,30 +951,97 @@ inline void AudioLoopback(void) {
     PORTClearBits(IOPORT_D, BIT_0);
 }
 
-void Compressor(int i) {
+/**
+ * Flanger Init
+ */
+inline void FlangerInit() {
+    flanger_samples_to_keep = 960; //ONE_MILISECOND_SIZE * fxCurrentData->delayTime;
+    flanger_current_sample_no = 0;
+    flanger_delay_time_ms = 1;
+    flanger_counter = FLANGER_COUNTER_MAX;
+    flanger_direction = 1;
 
-    if (y[2] > 800) {
-        compCoefficient = pow((y[2] / 800), (0.2 - 1));
-        Sin[i].leftChannel *= compCoefficient;
-    } else {
-        //compCoefficient = y[2];
+    free(flangerDelayArray);
+    flangerDelayArray = malloc(960 * sizeof (INT16));
+
+    int i;
+    for (i = 0; i < flanger_samples_to_keep; i++) {
+        flangerDelayArray[i] = 0;
     }
 
-
-
-    /*char print[30];
-    sprintf(print, "%f", compCoefficient);
-    SetColor(WHITE);
-    Bar(5, 120, 55, 150);
-    SetColor(BLACK);
-    OutTextXY(5, 120, print);*/
+    flanger_samples_to_keep = flanger_delay_time_ms * FLANGER_ONE_MILISECOND_SIZE;
 
 }
 
+/**
+ * Processes the Flanger effect
+ * @param i
+ */
+inline void FlangerProcess(int i) {
+    Sin[i].leftChannel += flangerDelayArray[flanger_current_sample_no];
+    flangerDelayArray[flanger_current_sample_no] = (flangerDelayArray[flanger_current_sample_no] + Sin[i].leftChannel) * 0.45f; // fxCurrentData->delayDecay; 
+    //720 forward feed
+    if (flanger_direction == 1 && flanger_current_sample_no < FLANGER_ONE_MILISECOND_SIZE) {
+        flangerDelayArray[flanger_current_sample_no + (flanger_delay_time_ms * FLANGER_ONE_MILISECOND_SIZE)] = Sin[i].leftChannel * 0.45f;
+    }
+
+
+    flanger_current_sample_no++;
+    if (flanger_current_sample_no >= flanger_samples_to_keep) {
+        flanger_current_sample_no = 0;
+    }
+}
+/**
+ * Emulate the LFO of 1HZ
+ */
+inline void FlangerSweep() {
+    if (!--flanger_counter) {
+        flanger_delay_time_ms += flanger_direction;
+        flanger_samples_to_keep = flanger_delay_time_ms * FLANGER_ONE_MILISECOND_SIZE;
+
+        if (flanger_delay_time_ms >= 15) {
+            flanger_direction = -1;
+        }
+
+        if (flanger_delay_time_ms <= 1) {
+            flanger_direction = 1;
+        }
+
+        flanger_counter = fxCurrentData->flangerFrequency * 3200;
+    }
+}
+/**
+ * Compressor
+ * @param i
+ */
+void Compressor(int i) {
+
+    if (y[2] > fxCurrentData->compTreshold) {
+        compCoefficient = pow((y[2] / fxCurrentData->compTreshold), (1 / fxCurrentData->compRatio - 1));
+        Sin[i].leftChannel *= compCoefficient;
+    }
+}
+/*
+ * Limiter
+ */
+void Limiter(int i) {
+
+    if (y[2] > fxCurrentData->limitTreshold) {
+        compCoefficient = pow((y[2] / fxCurrentData->limitTreshold), (1 / 10 - 1));
+        Sin[i].leftChannel *= compCoefficient;
+    }
+}
+
+/*
+ * BitCrush
+ */
 void BitCrusher(int i) {
     Sin[i].leftChannel = Sin[i].leftChannel & (-1 << fxCurrentData->bitsToKeep);
 }
 
+/*
+ * Fuzz
+ */
 void Fuzz(int i) {
     q = fxCurrentData->fuzzGain * Sin[i].leftChannel;
     if (q > 0) {
@@ -1070,6 +1052,9 @@ void Fuzz(int i) {
     Sin[i].leftChannel = fxCurrentData->fuzzMix * z + (1 - fxCurrentData->fuzzMix) * Sin[i].leftChannel;
 }
 
+/*
+ * Overdrive
+ */
 void Overdrive(int i) {
 
     INT16 current = abs(Sin[i].leftChannel);
@@ -1091,16 +1076,11 @@ void Overdrive(int i) {
     }
 }
 
-/*
-This is the auto wah effect initialization function. 
-This initializes the band pass filter and the effect control variables
- */
 
+/*
+ * Load Coefficients for the LP filter
+ */
 inline void EnvelopeInit() {
-    //Lowpass filter parameters	
-    /*
-       C = 1/TAN(PI*Fc/Fs)
-     */
     double C = 1018.59;
 
     b[0] = 1 / (1 + 2 * 0.7071 * C + pow(C, 2));
@@ -1111,13 +1091,14 @@ inline void EnvelopeInit() {
     a[2] = b[0]*(1 - 2 * 0.7071 * C + pow(C, 2));
 }
 
-inline void Envelope(double xin) {
+/*
+ * Simple LP filter to process the envelope
+ */
+inline void Envelope(double in) {
     x[0] = x[1];
     x[1] = x[2];
-    /*Here the input to the filter
-    is half rectified*/
-    //x[2] = (xin > 0) ? xin : 0;
-    x[2] = abs(xin);
+
+    x[2] = abs(in);
 
     y[0] = y[1];
     y[1] = y[2];
@@ -1129,55 +1110,46 @@ inline void Envelope(double xin) {
     y[2] -= a[2] * y[0];
 }
 
+/*
+ * Initalize the AutoWah filter
+ */
 void AutoWah_init(short effect_rate, short sampling, short maxf, short minf, short Q, double gainfactor, short freq_step) {
-    //Process variables
     center_freq = 0;
     samp_freq = sampling;
     counter = effect_rate;
 
-    //User Parametters
+
     counter_limit = effect_rate;
 
-    //Convert frequencies to index ranges
     min_freq = 0;
     max_freq = (maxf - minf) / freq_step;
 
-    bp_iir_init(sampling, gainfactor, Q, freq_step, minf);
+    BandPassInitialize(sampling, gainfactor, Q, freq_step, minf);
     f_step = freq_step;
 
 }
 
 /*
-This function generates the current output value
-Note that if the input and output signal are integer
-unsigned types, we need to add a half scale offset
+ * Process the signal here
  */
 double AutoWah_process(int xin) {
     double yout;
 
-    yout = bp_iir_filter(xin, &H);
+    yout = BandPassProcess(xin, &filter_struct);
 
     return yout;
 }
 
 /*
-This function will emulate a LFO that will vary according
-to the effect_rate parameter set in the AutoWah_init function.
+ * Do a change in the Band-pass filter acording to the signal envelope
  */
 void AutoWah_sweep() {
     unsigned int filter_index;
-    double yout;
+    double out;
 
     if (!--counter) {
-        /*The output of the LPF (y[2]) is scaled by 0.1
-        in order to be used as a LFO to control the band pass filter
-         */
-        filter_index = (double) min_freq + y[2]*0.1;
+        filter_index = (double) min_freq + y[2] * 0.1; //--------------------------------------------------------------------------------------------------------------------
 
-        /*The scaling value is determined as a value
-        that would keep the filter index within the
-        range of max_freq
-         */
         if (filter_index > max_freq) {
             filter_index = max_freq;
         }
@@ -1185,22 +1157,16 @@ void AutoWah_sweep() {
             filter_index = 0;
         }
 
-        bp_iir_setup(&H, filter_index);
+        BandPassSetup(&filter_struct, filter_index);
 
         counter = counter_limit;
     }
 }
 
-/*This initialization function will create the
-band pass filter coefficients array, you have to specify:
-fsfilt = Sampling Frequency
-gb     = Gain at cut frequencies
-Q      = Q factor, Higher Q gives narrower band
-fstep  = Frequency step to increase center frequencies
-in the array
-fmin   = Minimum frequency for the range of center   frequencies
+/*
+ * This function initializes the band-pass filter
  */
-void bp_iir_init(double fsfilt, double gb, double Q, short fstep, short fmin) {
+void BandPassInitialize(double fsfilt, double gb, double Q, short fstep, short fmin) {
     int i;
     double damp;
     double wo;
@@ -1209,101 +1175,41 @@ void bp_iir_init(double fsfilt, double gb, double Q, short fstep, short fmin) {
 
     for (i = 0; i < BP_MAX_COEFS; i++) {
         wo = 2 * PI * (fstep * i + fmin) / fsfilt;
-        bp_coeff_arr[i].e = 1 / (1 + damp * tan(wo / (Q * 2)));
-        bp_coeff_arr[i].p = cos(wo);
-        bp_coeff_arr[i].d[0] = (1 - bp_coeff_arr[i].e);
-        bp_coeff_arr[i].d[1] = 2 * bp_coeff_arr[i].e * bp_coeff_arr[i].p;
-        bp_coeff_arr[i].d[2] = (2 * bp_coeff_arr[i].e - 1);
+        bandPassCoefficients[i].e = 1 / (1 + damp * tan(wo / (Q * 2)));
+        bandPassCoefficients[i].p = cos(wo);
+        bandPassCoefficients[i].d[0] = (1 - bandPassCoefficients[i].e);
+        bandPassCoefficients[i].d[1] = 2 * bandPassCoefficients[i].e * bandPassCoefficients[i].p;
+        bandPassCoefficients[i].d[2] = (2 * bandPassCoefficients[i].e - 1);
     }
-}
-
-/*This function loads a given set of band pass filter coefficients acording to a center frequency index
-into a band pass filter object
-H = filter object
-ind = index of the array mapped to a center frequency
- */
-void bp_iir_setup(struct bp_filter * H, int ind) {
-    H->e = bp_coeff_arr[ind].e;
-    H->p = bp_coeff_arr[ind].p;
-    H->d[0] = bp_coeff_arr[ind].d[0];
-    H->d[1] = bp_coeff_arr[ind].d[1];
-    H->d[2] = bp_coeff_arr[ind].d[2];
-}
-
-/*This function loads a given set of band pass filter coefficients acording to a center frequency index
-into a band pass filter object
-H = filter object
-ind = index of the array mapped to a center frequency
- */
-double bp_iir_filter(double yin, struct bp_filter * H) {
-    double yout;
-
-    H->x[0] = H->x[1];
-    H->x[1] = H->x[2];
-    H->x[2] = yin;
-
-    H->y[0] = H->y[1];
-    H->y[1] = H->y[2];
-
-    H->y[2] = H->d[0] * H->x[2] - H->d[0] * H->x[0] + (H->d[1] * H->y[1]) - H->d[2] * H->y[0];
-
-    yout = H->y[2];
-
-    return yout;
 }
 
 /*
-void Octave() {
-    int i;
-    for (i = 0; i < FRAME_SIZE; i++) {
-        din[i].re = 64 * Sin[i].leftChannel;
-        din[i].im = 0;
-    }
-
-    mips_fft32(temp, din, fftc, scratch, LOGN);
-
-    
-      double LinearInterpolate(
-            double y1,double y2,
-            double mu)
-        {
-            return(y1*(1-mu)+y2*mu);
-        }
-     
-
-    //DO the phase shift
-    int j;
-    for (j = FRAME_SIZE - 1; j >= 0; j--) {
-        if ((j % 2 == 0) && (j < 512)) {
-            temp[j * 2] = temp[j];
-        }
-
-        temp[j].re = 32 * temp[j].re;
-        temp[j].im = 32 * (0 - temp[j].im);
-    }
-
-
-    //    int l;
-    //    for (l = 1; l < FRAME_SIZE - 2; l = l + 2) {
-    //        temp[l].re = (temp[l - 1].re + temp[l + 1].re) / 2;
-    //        temp[l].im = (temp[l - 1].im + temp[l + 1].im) / 2;
-    //    }
-
-    mips_fft32(dout, temp, fftc, scratch, LOGN);
-
-
-    int k;
-    for (k = 0; k < FRAME_SIZE; k++) {
-        Sin[k].leftChannel = dout[k].re; // * hanningWindow[i];
-    }
-
-    
-    char print[30];
-    sprintf(print, "%i", din[0].re);
-    SetColor(WHITE);
-    Bar(100, 20, 160, 40);
-    SetColor(BLACK);
-    OutTextXY(100, 20, print);
-    
-}
+ * This function loads the new coefficients for the Band-pass filter
  */
+void BandPassSetup(struct filter * filter_struct, int ind) {
+    filter_struct->e = bandPassCoefficients[ind].e;
+    filter_struct->p = bandPassCoefficients[ind].p;
+    filter_struct->d[0] = bandPassCoefficients[ind].d[0];
+    filter_struct->d[1] = bandPassCoefficients[ind].d[1];
+    filter_struct->d[2] = bandPassCoefficients[ind].d[2];
+}
+
+/*
+ * Processes the Band-pass filter
+ */
+double BandPassProcess(double yin, struct filter * filter_struct) {
+    double yout;
+
+    filter_struct->x[0] = filter_struct->x[1];
+    filter_struct->x[1] = filter_struct->x[2];
+    filter_struct->x[2] = yin;
+
+    filter_struct->y[0] = filter_struct->y[1];
+    filter_struct->y[1] = filter_struct->y[2];
+
+    filter_struct->y[2] = filter_struct->d[0] * filter_struct->x[2] - filter_struct->d[0] * filter_struct->x[0] + (filter_struct->d[1] * filter_struct->y[1]) - filter_struct->d[2] * filter_struct->y[0];
+
+    yout = filter_struct->y[2];
+
+    return yout;
+}
